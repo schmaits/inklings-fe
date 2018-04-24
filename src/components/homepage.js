@@ -52,11 +52,14 @@ class Homepage extends Component {
             <div>
                 <div className="section columns">
                     <div className="column is-one-quarter">
-                        <p>Profile Picture</p>                
+                        <figure className="image is-128x128">
+                            <img src={this.state.user.profilePictureUrl} alt={`${this.state.user.firstName} ${this.state.user.secondName}`}/>
+                        </figure>              
                     </div>
                     <div className="column">
-                        <p>Hello NAME!</p>
-                        <p>Quote</p>
+                        <p className="title">Hello {this.state.user.firstName}!</p>
+                        <p>{this.state.quote.body}</p>
+                        <p className="has-text-left">- {this.state.quote.bookTitle}</p>
                     </div>
                 </div>
 
