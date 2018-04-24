@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import Navbar from './components/navbar';
+import Hero from './components/hero';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <Navbar/>
+          <Hero/>
         </header>
       </div>
     );
