@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getCall } from '../lib/api';
+import { getCall, putCall } from '../lib/api';
 
 class BookPreview extends Component {
     state = {
@@ -13,6 +13,15 @@ class BookPreview extends Component {
                     book: bookData.book[0]
                 })
             })
+    }
+
+    moveToRead = (event) => {
+        event.preventDefault();
+        // let obj = { bookId: }
+        putCall(`/users/${this.props.user}/booksRead`, { bookId: this.props.bookId })
+            .then(
+
+            )
     }
 
     render () {
@@ -34,6 +43,7 @@ class BookPreview extends Component {
                         <p>{author}</p>
                         <p>{rating}/5</p>
                         <p>{genres}</p>
+                        <a className="button" onClick={this.moveToRead} >Finished</a>
                     </div>
                 </div>
             </div>
