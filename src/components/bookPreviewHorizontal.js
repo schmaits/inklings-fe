@@ -30,6 +30,8 @@ class BookPreviewHorizontal extends Component {
                         <strong>{this.state.book.title}</strong>
                         <br/>
                         {this.state.book.author}
+                        <p>{this.state.book.rating}/5</p>
+                        <p>{this.state.book.genres}</p>
                     </p>
                     </div>
                 </div>
