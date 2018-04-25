@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import BookPreviewVertical from './bookPreviewVertical';
 import ClubPreview from './clubPreview';
 import BookPreviewHorizontal from './bookPreviewHorizontal';
 import { getCall } from '../lib/api';
