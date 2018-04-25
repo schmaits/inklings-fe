@@ -77,7 +77,7 @@ class Homepage extends Component {
             
                 <hr/>
 
-                <div className="section">
+                <div>
                     <div className="tile is-ancestor">
                         <div className="tile is-parent">
                             <div className="tile is-child box">
@@ -95,43 +95,49 @@ class Homepage extends Component {
                 </div>
                 <div className="section">
                     <div className="tile is-ancestor">
-                        <div className="tile is-parent is-3">
-                            <div className="tile is-child box">
+                        <div className="tile is-parent is-3 box">
+                            <div className="tile is-child">
                                 <p className="is-size-5">Currently reading</p>
                                 {this.state.user.currentlyReading.map(book => {
-                                        return <BookPreviewVertical 
+                                        return <BookPreviewHorizontal
                                             key={book}
                                             bookId={book}
-                                            user={this.state.user._id}
+                                            finishedButton={true}
                                         />
                                 })}
                             </div>
                         </div>
-                        <div className="tile is-10 is-vertical">
-                            
-                                <p className="is-size-5">To Read</p>
-                            <div className="tile is-parent">
-                                {this.state.user.toRead.map(book => {
-                                    return <div key={book} className="tile is-child box">
-                                        <BookPreviewHorizontal
-                                            // key={book}
-                                            bookId={book}
-                                        />
-                                    </div>
-                                    
-                                })}
-                            </div>
-                                <p className="is-size-5">Read</p>
-                            <div className="tile is-parent">
-                                {this.state.user.booksRead.map(book => {
-                                    return <div key={book} className="tile is-child box">
-                                        <BookPreviewHorizontal
-                                            // key={book}
-                                            bookId={book}
-                                        />
-                                    </div>
-                                    
-                                })}
+                        <div className="tile is-vertical">
+                            <div className="tile is-vertical box">
+                                <div className="tile">
+                                    <p className="is-size-5">To Read</p>
+                                </div>
+                                <div className="tile is-parent">
+                                    {this.state.user.toRead.map(book => {
+                                        return <div key={book} className="tile is-child">
+                                            <BookPreviewHorizontal
+                                                bookId={book}
+                                                finishedButton={false}
+                                            />
+                                        </div>
+                                        
+                                    })}
+                                </div>
+                            </div>        
+                            <div className="tile is-vertical box">
+                                <div className="tile">
+                                    <p className="is-size-5">Read</p>
+                                </div>
+                                <div className="tile is-parent">
+                                    {this.state.user.booksRead.map(book => {
+                                        return <div key={book} className="tile is-child">
+                                            <BookPreviewHorizontal
+                                                bookId={book}
+                                                finishedButton={false}
+                                            />
+                                        </div>
+                                    })}
+                                </div>
                             </div> 
                         </div>
                     </div>
