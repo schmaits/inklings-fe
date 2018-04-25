@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 class Comment extends Component {
     render () {
         return (
-            <article class="media">
-                <figure class="media-left">
-                    <p class="image is-64x64">
+            <article className="media">
+                <figure className="media-left">
+                    <p className="image is-64x64">
                     <img src="https://bulma.io/images/placeholders/128x128.png"/>
                     </p>
                 </figure>
-                <div class="media-content">
-                    <div class="content">
+                <div className="media-content">
+                    <div className="content">
                     <p>
                         <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
                         <br/>>
@@ -18,8 +18,8 @@ class Comment extends Component {
                     </p>
                     </div>
                 </div>
-                <div class="media-right">
-                    <button class="delete"></button>
+                <div className="media-right">
+                    <button className="delete"></button>
                 </div>
             </article>
         )
