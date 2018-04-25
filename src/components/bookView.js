@@ -6,7 +6,8 @@ import { getCall } from '../lib/api';
 class BookView extends Component {
     state = {
         book: {},
-        quotes: []
+        quotes: [],
+        comments: []
     }
 
     componentDidMount () {
@@ -30,28 +31,44 @@ class BookView extends Component {
                     quotes: bookQuotes
                 })
             })
+            .then(() => {
+                return getCall(`/comments/books/${this.state.book._id}`)
+            })
+            .then(bookComments => {
+                this.setState({
+                    comments: bookComments.bookComments
+                })
+            })
             .catch(err => {
                 if (err) console.log(err);
             });
     }
 
     render () {
-        console.log(this.state.quote)
         return (
             <div className="tile is-ancestor box">
                 <div className="tile is-parent is-vertical box is-3">
                     <div className="tile is-child box">
-                        <img src={this.state.book.coverImageUrl}/>
+                        <img src={this.state.book.coverImageUrl} alt={this.state.book.title}/>
                         <p>{this.state.book.rating}/5</p>
                     </div>
                     <div className="tile is-child box">Clubs reading</div>
                 </div>
                 <div className="tile is-parent is-vertical box">
-                    <div className="tile is-child box has-text-centered">
-                        { this.state.quotes.length === 0 ? (<p>There are no quotes for this book yet!</p>) : (
-                            <p>"{faker.random.arrayElement(this.state.quotes).body}"</p>) }
+                    <div className="tile is-child box">
+                        { this.state.quotes.length === 0 ? 
+                            (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 
+                            (<p>"{faker.random.arrayElement(this.state.quotes).body}"</p>) 
+                        }
                     </div>
-                    <div className="tile is-child box">Recent comments</div>
+                    <div className="tile is-child box">
+                        { this.state.comments.length === 0 ?
+                            (<p className="has-text-centered">There are no comments for this book yet!</p>) : 
+                            this.state.comments.map(comment => {
+                                return (<p key={comment._id}>comment.body</p>)
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         )
