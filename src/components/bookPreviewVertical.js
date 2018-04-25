@@ -28,7 +28,7 @@ class BookPreviewVertical extends Component {
         return (
             <div className="card">
                 <div className="card-image level">
-                    <figure className="image is-4x3">
+                    <figure className="image is-96x96">
                         <img src={coverImageUrl} alt={title}/>
                     </figure>
                 </div>
