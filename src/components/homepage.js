@@ -84,6 +84,7 @@ class Homepage extends Component {
                                 {this.state.clubs.map(club => {
                                     return <ClubPreview
                                         key={club._id}
+                                        id={club._id}
                                         currentlyReading={club.currentlyReading}
                                         name={club.name}
                                     />
