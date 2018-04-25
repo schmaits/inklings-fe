@@ -79,9 +79,25 @@ class Homepage extends Component {
 
                 <div className="section">
                     <div className="tile is-ancestor">
-                        <div className="tile is-3 is-vertical">
-                            <p className="is-size-5">Currently reading</p>
-                            <div className="tile is-child">
+                        <div className="tile is-parent">
+                            <div className="tile is-child box">
+                                <p className="is-size-5">Clubs</p>
+                                {this.state.clubs.map(club => {
+                                    return <ClubPreview
+                                        key={club._id}
+                                        currentlyReading={club.currentlyReading}
+                                        name={club.name}
+                                    />
+                                })}
+                            </div>
+                        </div>                    
+                    </div>
+                </div>
+                <div className="section">
+                    <div className="tile is-ancestor">
+                        <div className="tile is-parent is-3">
+                            <div className="tile is-child box">
+                                <p className="is-size-5">Currently reading</p>
                                 {this.state.user.currentlyReading.map(book => {
                                         return <BookPreviewVertical 
                                             key={book}
@@ -92,20 +108,11 @@ class Homepage extends Component {
                             </div>
                         </div>
                         <div className="tile is-10 is-vertical">
-                            <div className="tile is-child">
-                                <p className="is-size-5">Clubs</p>
-                                {this.state.clubs.map(club => {
-                                    return <ClubPreview
-                                        key={club._id}
-                                        currentlyReading={club.currentlyReading}
-                                        name={club.name}
-                                    />
-                                })}
-                            </div>
-                            <div className="tile is-parent">
+                            
                                 <p className="is-size-5">To Read</p>
+                            <div className="tile is-parent">
                                 {this.state.user.toRead.map(book => {
-                                    return <div key={book} className="tile is-child">
+                                    return <div key={book} className="tile is-child box">
                                         <BookPreviewHorizontal
                                             // key={book}
                                             bookId={book}
@@ -114,10 +121,10 @@ class Homepage extends Component {
                                     
                                 })}
                             </div>
-                            <div className="tile is-parent">
                                 <p className="is-size-5">Read</p>
+                            <div className="tile is-parent">
                                 {this.state.user.booksRead.map(book => {
-                                    return <div key={book} className="tile is-child">
+                                    return <div key={book} className="tile is-child box">
                                         <BookPreviewHorizontal
                                             // key={book}
                                             bookId={book}
