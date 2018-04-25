@@ -25,7 +25,7 @@ class ClubPreview extends Component {
             <article className="media">
                 <figure className="media-left">
                     <p className="image is-96x96">
-                    <img src={this.state.currentlyReading.coverImageUrl}/>
+                    <img src={this.state.currentlyReading.coverImageUrl} alt={this.state.currentlyReading.title}/>
                     </p>
                 </figure>
                 <div className="media-content">
