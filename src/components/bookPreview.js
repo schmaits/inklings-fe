@@ -17,7 +17,6 @@ class BookPreview extends Component {
 
     moveToRead = (event) => {
         event.preventDefault();
-        // let obj = { bookId: }
         putCall(`/users/${this.props.user}/booksRead`, { bookId: this.props.bookId })
             .then(
 
@@ -28,8 +27,8 @@ class BookPreview extends Component {
         const { author, coverImageUrl, genres, rating, title } = this.state.book;
         return (
             <div className="card">
-                <div className="card-image">
-                    <figure className="image">
+                <div className="card-image level">
+                    <figure className="image is-4x3">
                         <img src={coverImageUrl} alt={title}/>
                     </figure>
                 </div>
