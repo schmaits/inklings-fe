@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import BookPreviewVertical from './bookPreviewVertical';
 import ClubPreview from './clubPreview';
+import BookPreviewHorizontal from './bookPreviewHorizontal';
 import { getCall } from '../lib/api';
 
 class Homepage extends Component {
@@ -9,7 +10,7 @@ class Homepage extends Component {
         user: {
             currentlyReading: [],
             toRead: [],
-            read: []
+            booksRead: []
         },
         quote: {},
         clubs: []
@@ -101,12 +102,30 @@ class Homepage extends Component {
                                     />
                                 })}
                             </div>
-                            <div className="tile is-child">
+                            <div className="tile is-parent">
                                 <p className="is-size-5">To Read</p>
+                                {this.state.user.toRead.map(book => {
+                                    return <div key={book} className="tile is-child">
+                                        <BookPreviewHorizontal
+                                            // key={book}
+                                            bookId={book}
+                                        />
+                                    </div>
+                                    
+                                })}
                             </div>
-                            <div className="tile is-child">
+                            <div className="tile is-parent">
                                 <p className="is-size-5">Read</p>
-                            </div>
+                                {this.state.user.booksRead.map(book => {
+                                    return <div key={book} className="tile is-child">
+                                        <BookPreviewHorizontal
+                                            // key={book}
+                                            bookId={book}
+                                        />
+                                    </div>
+                                    
+                                })}
+                            </div> 
                         </div>
                     </div>
                 </div>
