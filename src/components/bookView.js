@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import faker from 'faker';
 
 import { getCall } from '../lib/api';
+import Comment from './comment';
 
 class BookView extends Component {
     state = {
@@ -65,7 +66,7 @@ class BookView extends Component {
                         { this.state.comments.length === 0 ?
                             (<p className="has-text-centered">There are no comments for this book yet!</p>) : 
                             this.state.comments.map(comment => {
-                                return (<p key={comment._id}>comment.body</p>)
+                                return (<Comment key={comment._id}/>);
                             })
                         }
                     </div>
