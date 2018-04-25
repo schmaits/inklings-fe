@@ -27,7 +27,7 @@ class BookPreviewHorizontal extends Component {
                 </figure>
                 <div className="media-content">
                     <div className="content">
-                        <Link to={`/books/${this.state.book._id}`}><strong>{this.state.book.title}</strong></Link>
+                        <Link to={`/books/${this.state.book._id}`}><strong className="has-text-black">{this.state.book.title}</strong></Link>
                         <br/>
                         {this.state.book.author}
                         <p>{this.state.book.rating}/5</p>
