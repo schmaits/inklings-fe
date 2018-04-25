@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { getCall } from '../lib/api';
 
@@ -20,7 +21,7 @@ class ClubPreview extends Component {
     }
 
     render () {
-        const { name } = this.props;
+        const { name, id } = this.props;
         return (
             <article className="media">
                 <figure className="media-left">
@@ -31,7 +32,7 @@ class ClubPreview extends Component {
                 <div className="media-content">
                     <div className="content">
                     <p>
-                        <strong>{name}</strong>
+                        <Link to={`/clubs/${id}`}><strong className="has-text-black">{name}</strong></Link>
                         <br/>
                         Currently reading: 
                         <br/>
