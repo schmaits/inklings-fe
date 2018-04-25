@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { getCall } from '../lib/api';
 
@@ -26,7 +27,7 @@ class BookPreviewHorizontal extends Component {
                 </figure>
                 <div className="media-content">
                     <div className="content">
-                        <strong>{this.state.book.title}</strong>
+                        <Link to={`/books/${this.state.book._id}`}><strong>{this.state.book.title}</strong></Link>
                         <br/>
                         {this.state.book.author}
                         <p>{this.state.book.rating}/5</p>
