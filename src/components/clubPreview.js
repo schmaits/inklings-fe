@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { getCall } from '../lib/api';
 
@@ -20,17 +21,26 @@ class ClubPreview extends Component {
     }
 
     render () {
-        const { name } = this.props;
+        const { name, id } = this.props;
         return (
-            <div className="columns">
-                <div className="column">
+            <article className="media">
+                <figure className="media-left">
+                    <p className="image is-96x96">
                     <img src={this.state.currentlyReading.coverImageUrl} alt={this.state.currentlyReading.title}/>
+                    </p>
+                </figure>
+                <div className="media-content">
+                    <div className="content">
+                    <p>
+                        <Link to={`/clubs/${id}`}><strong className="has-text-black">{name}</strong></Link>
+                        <br/>
+                        Currently reading: 
+                        <br/>
+                        {this.state.currentlyReading.title}
+                    </p>
+                    </div>
                 </div>
-                <div className="column">
-                    <p className="title">{name}</p>
-                    <p>Currently reading: {this.state.currentlyReading.title}</p>
-                </div>
-            </div>
+            </article>
         )
     }
 }
