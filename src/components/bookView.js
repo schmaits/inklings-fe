@@ -66,7 +66,13 @@ class BookView extends Component {
                         { this.state.comments.length === 0 ?
                             (<p className="has-text-centered">There are no comments for this book yet!</p>) : 
                             this.state.comments.map(comment => {
-                                return (<Comment key={comment._id}/>);
+                                return (<Comment 
+                                    key={comment._id}
+                                    body={comment.body}
+                                    createdAt={comment.createdAt}
+                                    userId={comment.user}
+                                    clubId={comment.club}
+                                />);
                             })
                         }
                     </div>
