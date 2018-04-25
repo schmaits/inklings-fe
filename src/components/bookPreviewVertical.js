@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getCall, putCall } from '../lib/api';
 
-class BookPreview extends Component {
+class BookPreviewVertical extends Component {
     state = {
         book: {}
     }
@@ -50,4 +50,4 @@ class BookPreview extends Component {
     }
 }
 
-export default BookPreview;
+export default BookPreviewVertical;

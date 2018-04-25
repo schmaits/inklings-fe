@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import BookPreview from './bookPreview';
+import BookPreviewVertical from './bookPreviewVertical';
 import ClubPreview from './clubPreview';
 import { getCall } from '../lib/api';
 
@@ -82,7 +82,7 @@ class Homepage extends Component {
                             <p className="is-size-5">Currently reading</p>
                             <div className="tile is-child">
                                 {this.state.user.currentlyReading.map(book => {
-                                        return <BookPreview 
+                                        return <BookPreviewVertical 
                                             key={book}
                                             bookId={book}
                                             user={this.state.user._id}
