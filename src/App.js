@@ -14,7 +14,7 @@ class App extends Component {
             <div>
               <Hero/>
             </div>
-            <div>
+            <div className="section">
               <Switch>
                 <Route exact path="/" component={Homepage}/>
                 <Route path="/books/:bookId" component={BookView}/>

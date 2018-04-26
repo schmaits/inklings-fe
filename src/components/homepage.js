@@ -61,7 +61,7 @@ class Homepage extends Component {
     render () {
         return (
             <div>
-                <div className="section columns">
+                <div className="columns">
                     <div className="column is-one-quarter">
                         <figure className="image is-128x128">
                             <img src={this.state.user.profilePictureUrl} alt={`${this.state.user.firstName} ${this.state.user.secondName}`}/>
@@ -76,21 +76,22 @@ class Homepage extends Component {
             
                 <hr/>
 
-                <div>
-                    <div className="tile is-ancestor">
+                <div className="section">
+                    <div className="tile is-ancestor is-vertical">
+                        <div className="tile">
+                            <p className="is-size-5">Clubs</p>
+                        </div>
                         <div className="tile is-parent">
-                            <div className="tile is-child box">
-                                <p className="is-size-5">Clubs</p>
-                                {this.state.clubs.map(club => {
-                                    return <ClubPreview
-                                        key={club._id}
+                            {this.state.clubs.map(club => {
+                                return <div key={club._id} className="tile is-child box">
+                                    <ClubPreview
                                         id={club._id}
                                         currentlyReading={club.currentlyReading}
                                         name={club.name}
                                     />
-                                })}
-                            </div>
-                        </div>                    
+                                </div>                    
+                            })}
+                        </div>
                     </div>
                 </div>
                 <div className="section">

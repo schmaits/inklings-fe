@@ -9,10 +9,10 @@ const Hero = () => {
             <div className="hero-body">
                 <div className="container">
                 <h1 className="title has-text-light">
-                    PENDING TITLE
+                    Inklings
                 </h1>
                 <h2 className="subtitle has-text-light">
-                    PENDING SUBTITLE
+                    {/* PENDING SUBTITLE */}
                 </h2>
                 </div>
             </div>

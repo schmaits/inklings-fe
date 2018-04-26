@@ -10,7 +10,8 @@ class ClubView extends Component {
             members: []
         },
         currentBook: {},
-        quotes: []
+        quotes: [],
+        currentBookComments: []
     }
 
     componentDidMount () {
@@ -42,6 +43,23 @@ class ClubView extends Component {
                     quotes: bookQuotes
                 })
             })
+            .then(() => {
+                return getCall(`/comments/clubs/${this.state.club._id}`)
+            })
+            .then(clubComments => {
+                console.log('AAA', this.state.currentBook._id)
+                const currentBookComments = clubComments.clubComments.filter(comment => {
+                    console.log('***', comment.book)
+
+                    return comment.book === this.state.currentBook._id
+                })
+                return currentBookComments;
+            })
+            .then(currentBookComments => {
+                this.setState({
+                    currentBookComments
+                })
+            })
             .catch(err => {
                 console.log(err);
             })
@@ -54,6 +72,7 @@ class ClubView extends Component {
                 <div className="tile is-parent is-vertical is-3 box">
                     <div className="tile is-child box">
                         <p>Currently Reading</p>
+                        <br/>
                         <img src={coverImageUrl} alt={title}/>
                         <p>{title}</p>
                         <p>{author}</p>
@@ -61,6 +80,7 @@ class ClubView extends Component {
                     </div>
                     <div className="tile is-child box">
                         <p>Members</p>
+                        <br/>
                         {this.state.club.admin ? 
                             (<MemberPreview 
                                 userId={this.state.club.admin}
@@ -69,6 +89,7 @@ class ClubView extends Component {
                         }
                         {this.state.club.members.map(member => {
                             return <MemberPreview
+                                key={member}
                                 userId={member}
                                 admin={false}
                             />
