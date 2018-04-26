@@ -6,6 +6,7 @@ import { getCall } from '../lib/api';
 class Comment extends Component {
     state = {
         username: '',
+        userPicture: '',
         club: ''
     }
 
@@ -20,8 +21,10 @@ class Comment extends Component {
                 return getCall(`/users/${this.props.userId}`)
             })
             .then(userInfo => {
+                console.log(userInfo.user[0].profilePictureUrl)
                 this.setState({
-                    username: userInfo.user[0].username
+                    username: userInfo.user[0].username,
+                    userPicture: userInfo.user[0].profilePictureUrl
                 })
             })
             .catch(err => {
@@ -36,7 +39,7 @@ class Comment extends Component {
             <article className="media">
                 <figure className="media-left">
                     <p className="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="alt"/>
+                    <img src={this.state.userPicture} alt={this.state.username}/>
                     </p>
                 </figure>
                 <div className="media-content">
