@@ -18,7 +18,6 @@ class MemberPreview extends Component {
     }
 
     render () {
-        console.log(this.props.admin)
         return (
             <article className="media">
                 <figure className="media-left">
@@ -34,8 +33,6 @@ class MemberPreview extends Component {
                         <strong className="has-text-black">{this.state.user.username}</strong>
                         <br/>
                         <p>{this.state.user.firstName} {this.state.user.secondName}</p>
-                        {/* <p>{this.state.book.rating}/5</p>
-                        <p>{this.state.book.genres}</p> */}
                     </div>
                 </div>
             </article>
