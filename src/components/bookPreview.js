@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { getCall } from '../lib/api';
 
-class BookPreviewHorizontal extends Component {
+class BookPreview extends Component {
     state = {
         book: {}
     }
@@ -39,5 +39,5 @@ class BookPreviewHorizontal extends Component {
     }
 }
 
-export default BookPreviewHorizontal;
+export default BookPreview;
 

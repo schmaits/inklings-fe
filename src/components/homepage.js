@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import ClubPreview from './clubPreview';
-import BookPreviewHorizontal from './bookPreviewHorizontal';
+import BookPreview from './bookPreview';
 import { getCall } from '../lib/api';
 
 class Homepage extends Component {
@@ -99,7 +99,7 @@ class Homepage extends Component {
                             <div className="tile is-child">
                                 <p className="is-size-5">Currently reading</p>
                                 {this.state.user.currentlyReading.map(book => {
-                                        return <BookPreviewHorizontal
+                                        return <BookPreview
                                             key={book}
                                             bookId={book}
                                             finishedButton={true}
@@ -115,7 +115,7 @@ class Homepage extends Component {
                                 <div className="tile is-parent">
                                     {this.state.user.toRead.map(book => {
                                         return <div key={book} className="tile is-child">
-                                            <BookPreviewHorizontal
+                                            <BookPreview
                                                 bookId={book}
                                                 finishedButton={false}
                                             />
@@ -131,7 +131,7 @@ class Homepage extends Component {
                                 <div className="tile is-parent">
                                     {this.state.user.booksRead.map(book => {
                                         return <div key={book} className="tile is-child">
-                                            <BookPreviewHorizontal
+                                            <BookPreview
                                                 bookId={book}
                                                 finishedButton={false}
                                             />
