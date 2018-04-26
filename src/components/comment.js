@@ -10,9 +10,19 @@ class Comment extends Component {
     }
 
     componentDidMount () {
-        getCall(`/users/${this.props.userId}`)
+        getCall(`/clubs/${this.props.clubId}`)
+            .then(clubInfo => {
+                this.setState({
+                    club: clubInfo.club.name
+                })
+            })
+            .then(() => {
+                return getCall(`/users/${this.props.userId}`)
+            })
             .then(userInfo => {
-                console.log(userInfo)
+                this.setState({
+                    username: userInfo.user[0].username
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -26,13 +36,13 @@ class Comment extends Component {
             <article className="media">
                 <figure className="media-left">
                     <p className="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png"/>
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="alt"/>
                     </p>
                 </figure>
                 <div className="media-content">
                     <div className="content">
                     <p>
-                        <strong>John Smith</strong> <small>@johnsmith</small> <small>{relativeTime}</small>
+                        <strong>{this.state.username}</strong> <small>{this.state.club}</small> <small>{relativeTime}</small>
                         <br/>
                         {body}
                     </p>
