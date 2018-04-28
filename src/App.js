@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Hero from './components/hero';
+import Navbar from './components/navbar';
 import Homepage from './components/homepage';
 import ClubBrowse from './components/clubBrowse';
 import BookView from './components/bookView';
 import ClubView from './components/clubView';
 
+import './App.css';
+
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <div className="App hero-styling">
             <div>
-              <Hero/>
+              <Navbar/>
             </div>
             <div className="section">
               <Switch>
