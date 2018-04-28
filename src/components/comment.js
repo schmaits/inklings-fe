@@ -21,7 +21,6 @@ class Comment extends Component {
                 return getCall(`/users/${this.props.userId}`)
             })
             .then(userInfo => {
-                console.log(userInfo.user[0].profilePictureUrl)
                 this.setState({
                     username: userInfo.user[0].username,
                     userPicture: userInfo.user[0].profilePictureUrl

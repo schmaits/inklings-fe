@@ -64,6 +64,14 @@ class ClubView extends Component {
             })
     }
 
+    updateCurrentCommentsState = (newComment) => {
+        const updatedComments = this.state.currentBookComments.concat(newComment);
+
+        this.setState({
+            currentBookComments: updatedComments
+        })
+    }
+
     render () {
         const { coverImageUrl, title, author, rating } = this.state.currentBook;
         return (
@@ -106,6 +114,7 @@ class ClubView extends Component {
                         <AddComment
                             clubId={this.state.club._id}
                             bookId={this.state.currentBook._id}
+                            updateState={this.updateCurrentCommentsState}
                         />
                     </div>
                     <div>
@@ -115,7 +124,7 @@ class ClubView extends Component {
                                 body={comment.body}
                                 createdAt={comment.createdAt}
                                 userId={comment.user}
-                                clubId={comment.club}
+                                clubId={this.state.club._id}
                             />
                         })}
                     </div>

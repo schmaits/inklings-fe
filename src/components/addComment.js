@@ -21,17 +21,27 @@ class AddComment extends Component {
     addComment = (event) => {
         event.preventDefault();
 
+        const newComment = {
+            body: this.state.comment,
+            user: this.state.currentUser._id,
+            _id: 'tempid564t45t6'
+        }
+
         const postObj = { "body": this.state.comment, "user": this.state.currentUser._id }
 
         postCall(`/comments/clubs/${this.props.clubId}/books/${this.props.bookId}`, postObj)
             .then(() => {
+                this.props.updateState(newComment);
+                
                 this.setState({
                     comment: ''
                 })
             })
             .catch(err => {
-                throw err;
+                console.log(err);
             })
+
+
     }
 
     componentDidMount () {
