@@ -3,6 +3,7 @@ import faker from 'faker';
 
 import { getCall } from '../lib/api';
 import MemberPreview from './memberPreview';
+import AddComment from './addComment';
 
 class ClubView extends Component {
     state = {
@@ -47,10 +48,7 @@ class ClubView extends Component {
                 return getCall(`/comments/clubs/${this.state.club._id}`)
             })
             .then(clubComments => {
-                console.log('AAA', this.state.currentBook._id)
                 const currentBookComments = clubComments.clubComments.filter(comment => {
-                    console.log('***', comment.book)
-
                     return comment.book === this.state.currentBook._id
                 })
                 return currentBookComments;
@@ -103,7 +101,12 @@ class ClubView extends Component {
                             (<p>"{faker.random.arrayElement(this.state.quotes).body}"</p>) 
                         }
                     </div>
-                    <div className="tile is-child box">Discussion board</div>
+                    <div className="tile is-child box">Discussion board
+                        <AddComment
+                            clubId={this.state.club._id}
+                            bookId={this.state.currentBook._id}
+                        />
+                    </div>
                 </div>
             </div>
         )
