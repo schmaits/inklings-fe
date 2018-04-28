@@ -79,11 +79,11 @@ class Homepage extends Component {
                 <div className="section">
                     <div className="tile is-ancestor is-vertical">
                         <div className="tile">
-                            <p>Clubs</p>
+                            <p className="is-size-5">Clubs</p>
                         </div>
                         <div className="tile is-parent">
                             {this.state.clubs.map(club => {
-                                return <div key={club._id} className="tile is-child box">
+                                return <div key={club._id} className="tile is-child">
                                     <ClubPreview
                                         id={club._id}
                                         currentlyReading={club.currentlyReading}
@@ -94,9 +94,12 @@ class Homepage extends Component {
                         </div>
                     </div>
                 </div>
+
+                <hr/>
+
                 <div className="section">
                     <div className="tile is-ancestor">
-                        <div className="tile is-parent is-3 box">
+                        <div className="tile is-parent is-3">
                             <div className="tile is-child">
                                 <p className="is-size-5">Currently reading</p>
                                 {this.state.user.currentlyReading.map(book => {
@@ -109,7 +112,7 @@ class Homepage extends Component {
                             </div>
                         </div>
                         <div className="tile is-vertical is-8">
-                            <div className="tile is-vertical box">
+                            <div className="tile is-vertical">
                                 <div className="tile">
                                     <p className="is-size-5">To Read</p>
                                 </div>
@@ -125,7 +128,7 @@ class Homepage extends Component {
                                     })}
                                 </div>
                             </div>        
-                            <div className="tile is-vertical box">
+                            <div className="tile is-vertical">
                                 <div className="tile">
                                     <p className="is-size-5">Read</p>
                                 </div>
