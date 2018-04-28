@@ -79,7 +79,7 @@ class Homepage extends Component {
                 <div className="section">
                     <div className="tile is-ancestor is-vertical">
                         <div className="tile">
-                            <p className="is-size-5">Clubs</p>
+                            <p>Clubs</p>
                         </div>
                         <div className="tile is-parent">
                             {this.state.clubs.map(club => {
@@ -108,7 +108,7 @@ class Homepage extends Component {
                                 })}
                             </div>
                         </div>
-                        <div className="tile is-vertical">
+                        <div className="tile is-vertical is-8">
                             <div className="tile is-vertical box">
                                 <div className="tile">
                                     <p className="is-size-5">To Read</p>
