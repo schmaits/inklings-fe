@@ -4,6 +4,8 @@ import ClubPreview from './clubPreview';
 import BookPreview from './bookPreview';
 import { getCall } from '../lib/api';
 
+import '../App.css';
+
 class Homepage extends Component {
     state = {
         user: {
@@ -62,22 +64,20 @@ class Homepage extends Component {
         return (
             <div>
                 <div className="columns">
-                    <div className="column is-one-quarter">
-                        <figure className="image is-128x128">
-                            <img src={this.state.user.profilePictureUrl} alt={`${this.state.user.firstName} ${this.state.user.secondName}`}/>
+                    <div className="column is-one-fifth">
+                        <figure className="profile-picture image is-128x128">
+                            <img className="profile-picture" src={this.state.user.profilePictureUrl} alt={`${this.state.user.firstName} ${this.state.user.secondName}`}/>
                         </figure>              
                     </div>
                     <div className="column">
-                        <p className="title">Hello {this.state.user.firstName}!</p>
-                        <p>"{this.state.quote.body}"</p>
-                        <p className="has-text-right">- {this.state.quote.bookTitle}</p>
+                        <p className="title has-text-light">Hello {this.state.user.firstName}!</p>
+                        <p className="has-text-light">"{this.state.quote.body}"</p>
+                        <p className="has-text-right has-text-light">- {this.state.quote.bookTitle}</p>
                     </div>
                 </div>
-            
-                <hr/>
 
-                <div className="section">
-                    <div className="tile is-ancestor is-vertical">
+                <div>
+                    <div className="tile is-ancestor is-vertical box">
                         <div className="tile">
                             <p className="is-size-5">Clubs</p>
                         </div>
@@ -95,12 +95,10 @@ class Homepage extends Component {
                     </div>
                 </div>
 
-                <hr/>
-
-                <div className="section">
+                <div>
                     <div className="tile is-ancestor">
                         <div className="tile is-parent is-3">
-                            <div className="tile is-child">
+                            <div className="tile is-child box">
                                 <p className="is-size-5">Currently reading</p>
                                 {this.state.user.currentlyReading.map(book => {
                                         return <BookPreview
@@ -112,7 +110,7 @@ class Homepage extends Component {
                             </div>
                         </div>
                         <div className="tile is-vertical is-8">
-                            <div className="tile is-vertical">
+                            <div className="tile is-vertical box">
                                 <div className="tile">
                                     <p className="is-size-5">To Read</p>
                                 </div>
@@ -128,8 +126,8 @@ class Homepage extends Component {
                                     })}
                                 </div>
                             </div>        
-                            <div className="tile is-vertical">
-                                <div className="tile">
+                            <div className="tile is-vertical box">
+                                <div className="tile ">
                                     <p className="is-size-5">Read</p>
                                 </div>
                                 <div className="tile is-parent">
