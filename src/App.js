@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Hero from './components/hero';
 import Homepage from './components/homepage';
+import ClubBrowse from './components/clubBrowse';
 import BookView from './components/bookView';
 import ClubView from './components/clubView';
 
@@ -17,6 +18,7 @@ class App extends Component {
             <div className="section">
               <Switch>
                 <Route exact path="/" component={Homepage}/>
+                <Route exact path="/clubs" component={ClubBrowse}/>
                 <Route path="/books/:bookId" component={BookView}/>
                 <Route path="/clubs/:clubId" component={ClubView}/>
               </Switch>
