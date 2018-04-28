@@ -4,6 +4,7 @@ import faker from 'faker';
 import { getCall } from '../lib/api';
 import MemberPreview from './memberPreview';
 import AddComment from './addComment';
+import Comment from './comment';
 
 class ClubView extends Component {
     state = {
@@ -106,6 +107,17 @@ class ClubView extends Component {
                             clubId={this.state.club._id}
                             bookId={this.state.currentBook._id}
                         />
+                    </div>
+                    <div>
+                        {this.state.currentBookComments.map(comment => {
+                            return <Comment
+                                key={comment._id}
+                                body={comment.body}
+                                createdAt={comment.createdAt}
+                                userId={comment.user}
+                                clubId={comment.club}
+                            />
+                        })}
                     </div>
                 </div>
             </div>
