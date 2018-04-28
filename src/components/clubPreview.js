@@ -37,6 +37,7 @@ class ClubPreview extends Component {
                         Currently reading: 
                         <br/>
                         {this.state.currentlyReading.title}
+                        <br/>
                     </p>
                     </div>
                 </div>

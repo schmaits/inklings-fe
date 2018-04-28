@@ -32,6 +32,7 @@ class BookPreview extends Component {
                         {this.state.book.author}
                         <p>{this.state.book.rating}/5</p>
                         <p>{this.state.book.genres}</p>
+                        <br/>
                     </div>
                 </div>
             </article>
