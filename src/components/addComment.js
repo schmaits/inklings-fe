@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import faker from 'faker';
 
 import { getCall, postCall } from '../lib/api';
 
@@ -24,7 +25,7 @@ class AddComment extends Component {
         const newComment = {
             body: this.state.comment,
             user: this.state.currentUser._id,
-            _id: 'tempid564t45t6'
+            _id: faker.lorem.words() + faker.random.number()
         }
 
         const postObj = { "body": this.state.comment, "user": this.state.currentUser._id }
@@ -40,8 +41,6 @@ class AddComment extends Component {
             .catch(err => {
                 console.log(err);
             })
-
-
     }
 
     componentDidMount () {
