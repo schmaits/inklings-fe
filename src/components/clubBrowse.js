@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import chunk from 'chunk';
+import faker from 'faker'
 
 import ClubPreview from './clubPreview';
 import { getCall } from '../lib/api';
@@ -22,9 +23,10 @@ class ClubsBrowse extends Component {
         return (
             <div className="tile is-ancestor is-vertical">
                 {chunk(this.state.clubs, 4).map(chunk => {
-                    return <div className="tile is-parent">
+                    return <div key={faker.lorem.words()}className="tile is-parent">
+                        <hr/>
                         {chunk.map(club => {
-                            return <div key={club._id} className="tile is-child">
+                            return <div key={club._id}className="tile is-child is-3">
                                 <ClubPreview
                                     id={club._id}
                                     currentlyReading={club.currentlyReading}
