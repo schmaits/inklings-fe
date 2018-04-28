@@ -4,7 +4,7 @@ export function getCall (endpoint) {
             return res.json()
         })
         .catch(err => {
-            console.log(err)
+            throw err;
         });
 }
 
@@ -16,5 +16,22 @@ export function putCall (endpoint, newData) {
             'Content-Type': 'application/json'
           }),
         body: JSON.stringify(newData)
+    })
+    .catch(err => {
+        throw err;
+    })
+}
+
+export function postCall (endpoint, postObj) {
+    return fetch(`http://localhost:3010/api${endpoint}`, {
+        method: 'POST',
+        headers: new Headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }),
+        body: JSON.stringify(postObj)
+    })
+    .catch(err => {
+        throw err;
     })
 }
