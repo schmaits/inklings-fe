@@ -4,3 +4,8 @@
     background-size: cover;
     position: relative;
 }
+
+.heading {
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    font-size: 36px
+}

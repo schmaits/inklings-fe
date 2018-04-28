@@ -8,12 +8,10 @@ const Hero = () => {
             <Navbar/>
             <div className="hero-body">
                 <div className="container">
-                <h1 className="title has-text-light">
+                <h1 className="title has-text-light heading">
                     Inklings
                 </h1>
-                <h2 className="subtitle has-text-light">
-                    {/* PENDING SUBTITLE */}
-                </h2>
+                    <br/>
                 </div>
             </div>
         </section>        
