@@ -23,8 +23,6 @@ class AddComment extends Component {
 
         const postObj = { "body": this.state.comment, "user": this.state.currentUser._id }
 
-        console.log('*****', this.props.bookId)
-
         postCall(`/comments/clubs/${this.props.clubId}/books/${this.props.bookId}`, postObj)
             .then(() => {
                 this.setState({
@@ -32,7 +30,7 @@ class AddComment extends Component {
                 })
             })
             .catch(err => {
-                console.log(err);
+                throw err;
             })
     }
 
@@ -44,7 +42,7 @@ class AddComment extends Component {
                 })
             })
             .catch(err => {
-                console.log(err)
+                throw err;
             })
     }
 
