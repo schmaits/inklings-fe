@@ -62,58 +62,64 @@ class Homepage extends Component {
 
     render () {
         return (
-            <div>
-                <div className="columns">
-                    <div className="column is-one-fifth">
-                        <figure className="profile-picture image is-128x128">
-                            <img className="profile-picture" src={this.state.user.profilePictureUrl} alt={`${this.state.user.firstName} ${this.state.user.secondName}`}/>
-                        </figure>              
-                    </div>
-                    <div className="column">
-                        <p className="title has-text-light">Hello {this.state.user.firstName}!</p>
-                        <p className="has-text-light">"{this.state.quote.body}"</p>
-                        <p className="has-text-right has-text-light">- {this.state.quote.bookTitle}</p>
-                    </div>
-                </div>
-
-                <div>
-                    <div className="tile is-ancestor is-vertical box">
-                        <div className="tile">
-                            <p className="is-size-5">Clubs</p>
+            <div className="container">
+                <div className="tile is-ancestor">
+                    <div className="tile is-parent">
+                        <div className="tile is-child is-2 box">
+                            <figure className="image is-clearfix is-128x128">
+                                <img className="profile-picture" src={this.state.user.profilePictureUrl} alt={`${this.state.user.firstName} ${this.state.user.secondName}`}/>
+                            </figure>              
                         </div>
-                        <div className="tile is-parent">
-                            {this.state.clubs.map(club => {
-                                return <div key={club._id} className="tile is-child">
-                                    <ClubPreview
-                                        id={club._id}
-                                        currentlyReading={club.currentlyReading}
-                                        name={club.name}
-                                    />
-                                </div>                    
-                            })}
+                        <div className="tile is-child box">
+                            <p className="title has-text-dark">Hello {this.state.user.firstName}!</p>
+                            <p className="has-text-dark heading-3">"{this.state.quote.body}"</p>
+                            <p className="has-text-right has-text-dark heading-3">- {this.state.quote.bookTitle}</p>
                         </div>
                     </div>
                 </div>
 
+                <br/>
+
+                <div className="tile is-ancestor is-vertical">
+                    <div className="tile is-parent">
+                        <div className="tile is-child box">
+                            <p className="heading-3">Clubs</p>
+                            <div className="tile is-parent">
+                                {this.state.clubs.map(club => {
+                                    return <div key={club._id} className="tile is-child">
+                                        <ClubPreview
+                                            id={club._id}
+                                            currentlyReading={club.currentlyReading}
+                                            name={club.name}
+                                        />
+                                    </div>                    
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
                 <div>
                     <div className="tile is-ancestor">
                         <div className="tile is-parent is-3">
                             <div className="tile is-child box">
-                                <p className="is-size-5">Currently reading</p>
-                                {this.state.user.currentlyReading.map(book => {
-                                        return <BookPreview
-                                            key={book}
-                                            bookId={book}
-                                            finishedButton={true}
-                                        />
-                                })}
+                                <p className="heading-3">Currently reading</p>
+                                <div className="tile is-parent is-vertical">
+                                    {this.state.user.currentlyReading.map(book => {
+                                            return <div key={book} className="tile is-child">
+                                                <BookPreview
+                                                    bookId={book}
+                                                    finishedButton={true}
+                                                />
+                                            </div>
+                                    })}
+                                </div>
                             </div>
                         </div>
-                        <div className="tile is-vertical is-8">
-                            <div className="tile is-vertical box">
-                                <div className="tile">
-                                    <p className="is-size-5">To Read</p>
-                                </div>
+                        <div className="tile is-parent is-vertical">
+                            <div className="tile is-child box">
+                                <p className="heading-3">To Read</p>
                                 <div className="tile is-parent">
                                     {this.state.user.toRead.map(book => {
                                         return <div key={book} className="tile is-child">
@@ -122,24 +128,21 @@ class Homepage extends Component {
                                                 finishedButton={false}
                                             />
                                         </div>
-                                        
-                                    })}
+                                    })}  
                                 </div>
-                            </div>        
-                            <div className="tile is-vertical box">
-                                <div className="tile ">
-                                    <p className="is-size-5">Read</p>
-                                </div>
-                                <div className="tile is-parent">
-                                    {this.state.user.booksRead.map(book => {
-                                        return <div key={book} className="tile is-child">
-                                            <BookPreview
-                                                bookId={book}
-                                                finishedButton={false}
-                                            />
-                                        </div>
-                                    })}
-                                </div>
+                            </div>
+                            <div className="tile is-child box">
+                                    <p className="heading-3">Read</p>
+                                    <div className="tile is-parent">
+                                        {this.state.user.booksRead.map(book => {
+                                            return <div key={book} className="tile is-child">
+                                                <BookPreview
+                                                    bookId={book}
+                                                    finishedButton={false}
+                                                /> 
+                                            </div>
+                                        })}
+                                    </div>
                             </div> 
                         </div>
                     </div>
