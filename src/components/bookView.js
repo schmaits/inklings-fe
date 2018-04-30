@@ -58,8 +58,8 @@ class BookView extends Component {
 
     addToReadingList = (event) => {
         event.preventDefault();
-
-        putCall(`/users/${this.state.currentUser._id}/toRead`, { bookId: this.state.book._id })
+        
+        putCall(`/users/${this.state.currentUser._id}/toRead?update=add`, { bookId: this.state.book._id })
     }
 
     render () {
