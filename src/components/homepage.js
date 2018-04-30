@@ -82,6 +82,28 @@ class Homepage extends Component {
             })
     }
 
+    currentlyReadingToRead = (event) => {
+        event.preventDefault();
+
+        const bookId = event.target.id;
+
+        const updatedUser = Object.assign({}, this.state.user);
+        updatedUser.booksRead.push(bookId);
+        updatedUser.currentlyReading.splice(updatedUser.currentlyReading.indexOf(bookId), 1);
+
+        this.setState({
+            user: updatedUser
+        })
+
+        putCall(`/users/${this.state.user._id}/booksRead`, { bookId: bookId})
+            .then(() => {
+                return putCall(`/users/${this.state.user._id}/currentlyReading?update=remove`, { bookId: bookId })
+            })
+            .catch(err => {
+                throw err;
+            })
+    } 
+
     render () {
         return (
             <div className="container">
@@ -132,6 +154,8 @@ class Homepage extends Component {
                                             return <div key={book} className="tile is-child">
                                                 <BookPreview
                                                     bookId={book}
+                                                    currentlyReading={true}
+                                                    currentlyReadingToRead={this.currentlyReadingToRead}
                                                 />
                                             </div>
                                     })}

@@ -32,7 +32,8 @@ class BookPreview extends Component {
                         {this.state.book.author}
                         <p>{this.state.book.rating}/5</p>
                         <p>{this.state.book.genres}</p>
-                        {this.props.readingList === true ? <button id={this.state.book._id} onClick={this.props.readingListToCurrentlyReading}>Start reading</button> : null}
+                        {this.props.readingList ? <button id={this.state.book._id} onClick={this.props.readingListToCurrentlyReading}>Start reading</button> : null}
+                        {this.props.currentlyReading ? <button id={this.state.book._id} onClick={this.props.currentlyReadingToRead}>Finished!</button> : null}
                     </div>
                 </div>
             </article>
