@@ -6,6 +6,7 @@ import Homepage from './components/homepage';
 import ClubBrowse from './components/clubBrowse';
 import BookView from './components/bookView';
 import ClubView from './components/clubView';
+import NotFound from './components/notFound';
 
 import './App.css';
 
@@ -20,6 +21,7 @@ class App extends Component {
               <Route exact path="/clubs" component={ClubBrowse}/>
               <Route path="/books/:bookId" component={BookView}/>
               <Route path="/clubs/:clubId" component={ClubView}/>
+              <Route component={NotFound}/>
             </Switch>
         </div>
       </BrowserRouter>
