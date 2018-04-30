@@ -12,7 +12,7 @@ const Navbar = () => {
             <div className="navbar-menu">
                 <div className="navbar-end">
                     <div className="navbar-item has-text-light heading"><Link className="has-text-light" to="/clubs">Clubs</Link></div>
-                    <div className="navbar-item has-text-light heading"><Link className="has-text-light" to="/">Books</Link></div>
+                    <div className="navbar-item has-text-light heading"><Link className="has-text-light" to="/books">Books</Link></div>
                 </div>
             </div>
         </div>
