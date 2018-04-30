@@ -82,7 +82,7 @@ class ClubView extends Component {
         })
     }
 
-    addMemberToClub = (event) => {
+    joinClub = (event) => {
         event.preventDefault();
 
         let updatedClub = Object.assign({}, this.state.club);
@@ -94,6 +94,20 @@ class ClubView extends Component {
 
         putCall(`/clubs/${this.props.match.params.clubId}/users?update=add`, {userId: this.state.currentUser})
     }
+
+    leaveClub = (event) => {
+        event.preventDefault();
+
+        let updatedClub = Object.assign({}, this.state.club);
+        updatedClub.members.splice(this.state.club.members.indexOf(this.state.currentUser), 1);
+
+        this.setState({
+            club: updatedClub
+        })
+
+        putCall(`/clubs/${this.props.match.params.clubId}/users?update=remove`, {userId: this.state.currentUser})
+    }
+
 
     render () {
         const { coverImageUrl, title, author, rating } = this.state.currentBook;
@@ -132,7 +146,8 @@ class ClubView extends Component {
                             <p className="heading-3">About club</p>
                             <p>{this.state.club.summary}</p>
                             {this.state.club.members.includes(this.state.currentUser) ?
-                                null : <button onClick={this.addMemberToClub}>Join this club</button>
+                                <button onClick={this.leaveClub}>Leave this club</button> : 
+                                <button onClick={this.joinClub}>Join this club</button>
                             }
                         </div>
                         <div className="tile is-child has-text-centered box">
