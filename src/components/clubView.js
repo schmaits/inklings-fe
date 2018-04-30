@@ -74,6 +74,7 @@ class ClubView extends Component {
     }
 
     render () {
+        console.log(this.state.club)
         const { coverImageUrl, title, author, rating } = this.state.currentBook;
         return (
             <div className="container"> 
@@ -106,6 +107,10 @@ class ClubView extends Component {
                         </div>
                     </div>
                     <div className="tile is-parent is-vertical">
+                        <div className="tile is-child box">
+                            <p className="heading-3">About club</p>
+                            {this.state.club.summary}
+                        </div>
                         <div className="tile is-child has-text-centered box">
                             { this.state.quotes.length === 0 ? 
                                 (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 
