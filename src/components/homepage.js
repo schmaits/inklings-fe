@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import ClubPreview from './clubPreview';
 import BookPreview from './bookPreview';
-import { getCall } from '../lib/api';
+import { getCall, putCall } from '../lib/api';
 
 import '../App.css';
 
@@ -60,6 +60,28 @@ class Homepage extends Component {
             })
     }
 
+    readingListToCurrentlyReading = (event) => {
+        event.preventDefault();
+
+        const bookId = event.target.id;
+
+        let updatedUser = Object.assign({}, this.state.user);
+        updatedUser.currentlyReading.push(bookId);
+        updatedUser.toRead.splice(updatedUser.toRead.indexOf(bookId), 1)
+
+        this.setState({
+            user: updatedUser
+        });
+
+        putCall(`/users/${this.state.user._id}/currentlyReading?update=add`, { bookId: bookId})
+            .then(() => {
+                return putCall(`/users/${this.state.user._id}/toRead?update=remove`, { bookId: bookId })
+            })
+            .catch(err => {
+                throw err;
+            })
+    }
+
     render () {
         return (
             <div className="container">
@@ -110,7 +132,6 @@ class Homepage extends Component {
                                             return <div key={book} className="tile is-child">
                                                 <BookPreview
                                                     bookId={book}
-                                                    finishedButton={true}
                                                 />
                                             </div>
                                     })}
@@ -125,7 +146,8 @@ class Homepage extends Component {
                                         return <div key={book} className="tile is-child">
                                             <BookPreview
                                                 bookId={book}
-                                                finishedButton={false}
+                                                readingList={true}
+                                                readingListToCurrentlyReading={this.readingListToCurrentlyReading}
                                             />
                                         </div>
                                     })}  
@@ -138,7 +160,6 @@ class Homepage extends Component {
                                             return <div key={book} className="tile is-child">
                                                 <BookPreview
                                                     bookId={book}
-                                                    finishedButton={false}
                                                 /> 
                                             </div>
                                         })}
