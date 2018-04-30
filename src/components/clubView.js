@@ -14,7 +14,8 @@ class ClubView extends Component {
         },
         currentBook: {},
         quotes: [],
-        currentBookComments: []
+        currentBookComments: [],
+        currentUser: ''
     }
 
     componentDidMount () {
@@ -60,6 +61,14 @@ class ClubView extends Component {
                     currentBookComments
                 })
             })
+            .then(() => {
+                return getCall('/users')
+            })
+            .then(allUsers => {
+                this.setState({
+                    currentUser: allUsers.allUsers[5]._id
+                }) 
+            })
             .catch(err => {
                 this.props.history.push('/404')
             })
@@ -76,29 +85,14 @@ class ClubView extends Component {
     addMemberToClub = (event) => {
         event.preventDefault();
 
-        getCall('/users')
-            .then(allUsers => {
-                return allUsers.allUsers[5]._id
-            })
-            .then(currentUser => {
-                const updatedMembers = this.state.club.members.concat(currentUser)
-                
-                let updatedClub = Object.assign({}, this.state.club)
-                updatedClub.members = updatedMembers;
+        let updatedClub = Object.assign({}, this.state.club);
+        updatedClub.members = this.state.club.members.concat(this.state.currentUser);
 
-                this.setState({
-                    club: updatedClub
-                })
+        this.setState({
+            club: updatedClub
+        })
 
-                return currentUser;
-            })
-            .then(currentUser => {
-                return putCall(`/clubs/${this.props.match.params.clubId}/users?update=add`, {userId: currentUser})
-            })
-            .catch(err => {
-                throw err;
-            })
-
+        putCall(`/clubs/${this.props.match.params.clubId}/users?update=add`, {userId: this.state.currentUser})
     }
 
     render () {
@@ -137,7 +131,9 @@ class ClubView extends Component {
                         <div className="tile is-child box">
                             <p className="heading-3">About club</p>
                             <p>{this.state.club.summary}</p>
-                            <button onClick={this.addMemberToClub}>Join this club</button>
+                            {this.state.club.members.includes(this.state.currentUser) ?
+                                null : <button onClick={this.addMemberToClub}>Join this club</button>
+                            }
                         </div>
                         <div className="tile is-child has-text-centered box">
                             { this.state.quotes.length === 0 ? 
