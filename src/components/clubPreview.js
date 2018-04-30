@@ -38,11 +38,8 @@ class ClubPreview extends Component {
                         <br/>
                         {this.state.currentlyReading.title}
                         <br/>
-<<<<<<< HEAD
-=======
                         <br/>
                         <br/>
->>>>>>> #22-fetch-data
                     </p>
                     </div>
                 </div>
