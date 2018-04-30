@@ -75,58 +75,63 @@ class ClubView extends Component {
     render () {
         const { coverImageUrl, title, author, rating } = this.state.currentBook;
         return (
-            <div className="tile is-ancestor box">
-                <div className="tile is-parent is-vertical is-3 box">
-                    <div className="tile is-child box">
-                        <p>Currently Reading</p>
-                        <br/>
-                        <img src={coverImageUrl} alt={title}/>
-                        <p>{title}</p>
-                        <p>{author}</p>
-                        <p>{rating}/5</p>
+            <div className="container"> 
+                <div className="tile is-ancestor">
+                    <div className="tile is-parent is-vertical is-3">
+                        <div className="tile is-child box">
+                            <p className="heading-3">Currently Reading</p>
+                            <br/>
+                            <img src={coverImageUrl} alt={title}/>
+                            <p>{title}</p>
+                            <p>{author}</p>
+                            <p>{rating}/5</p>
+                        </div>
+                        <div className="tile is-child box">
+                            <p className="heading-3">Members</p>
+                            <br/>
+                            {this.state.club.admin ? 
+                                (<MemberPreview 
+                                    userId={this.state.club.admin}
+                                    admin={true}
+                                />) : (<p>There are no members</p>)
+                            }
+                            {this.state.club.members.map(member => {
+                                return <MemberPreview
+                                    key={member}
+                                    userId={member}
+                                    admin={false}
+                                />
+                            })}
+                        </div>
                     </div>
-                    <div className="tile is-child box">
-                        <p>Members</p>
-                        <br/>
-                        {this.state.club.admin ? 
-                            (<MemberPreview 
-                                userId={this.state.club.admin}
-                                admin={true}
-                            />) : (<p>There are no members</p>)
-                        }
-                        {this.state.club.members.map(member => {
-                            return <MemberPreview
-                                key={member}
-                                userId={member}
-                                admin={false}
-                            />
-                        })}
-                    </div>
-                </div>
-                <div className="tile is-parent is-vertical box">
-                    <div className="tile is-child box has-text-centered">
-                        { this.state.quotes.length === 0 ? 
-                            (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 
-                            (<p>"{faker.random.arrayElement(this.state.quotes).body}"</p>) 
-                        }
-                    </div>
-                    <div className="tile is-child box">Discussion board
-                        <AddComment
-                            clubId={this.state.club._id}
-                            bookId={this.state.currentBook._id}
-                            updateState={this.updateCurrentCommentsState}
-                        />
-                    </div>
-                    <div>
-                        {this.state.currentBookComments.map(comment => {
-                            return <Comment
-                                key={comment._id}
-                                body={comment.body}
-                                createdAt={comment.createdAt}
-                                userId={comment.user}
+                    <div className="tile is-parent is-vertical">
+                        <div className="tile is-child has-text-centered box">
+                            { this.state.quotes.length === 0 ? 
+                                (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 
+                                (<p className="heading-3">"{faker.random.arrayElement(this.state.quotes).body}"</p>) 
+                            }
+                        </div>
+                        <div className="tile is-child box">
+                            <AddComment
                                 clubId={this.state.club._id}
+                                bookId={this.state.currentBook._id}
+                                updateState={this.updateCurrentCommentsState}
                             />
-                        })}
+                        </div>
+                        <div className="tile is-child box">
+                            <p className="heading-3">Discussion board</p>
+                            {this.state.currentBookComments.map(comment => {
+                                return <div key={comment._id}>
+                                    <Comment
+                                        body={comment.body}
+                                        createdAt={comment.createdAt}
+                                        userId={comment.user}
+                                        clubId={this.state.club._id}
+                                    />
+                                    <hr/>
+                                </div>
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

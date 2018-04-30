@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    background-attachment: fixed;
 }
 
 .heading {
@@ -36,5 +37,12 @@
     background-color: #cea11a;
     border: none;
     box-shadow: none;
+}
+
+.comment-box {
+    background-color: #c19717;
+    border-color: grey;
+    border-radius: 0%;
+    box-shadow: none
 }
     

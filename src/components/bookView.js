@@ -47,15 +47,15 @@ class BookView extends Component {
 
     render () {
         return (
-            <div className="tile is-ancestor box">
-                <div className="tile is-parent is-vertical box is-3">
+            <div className="tile is-ancestor">
+                <div className="tile is-parent is-vertical is-3">
                     <div className="tile is-child box">
                         <img src={this.state.book.coverImageUrl} alt={this.state.book.title}/>
                         <p>{this.state.book.rating}/5</p>
                     </div>
                     <div className="tile is-child box">Clubs reading</div>
                 </div>
-                <div className="tile is-parent is-vertical box">
+                <div className="tile is-parent is-vertical">
                     <div className="tile is-child box">
                         { this.state.quotes.length === 0 ? 
                             (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 

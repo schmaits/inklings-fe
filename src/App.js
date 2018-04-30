@@ -14,17 +14,13 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App hero-styling">
-            <div>
-              <Navbar/>
-            </div>
-            <div className="section">
-              <Switch>
-                <Route exact path="/" component={Homepage}/>
-                <Route exact path="/clubs" component={ClubBrowse}/>
-                <Route path="/books/:bookId" component={BookView}/>
-                <Route path="/clubs/:clubId" component={ClubView}/>
-              </Switch>
-            </div>
+            <Navbar/>
+            <Switch>
+              <Route exact path="/" component={Homepage}/>
+              <Route exact path="/clubs" component={ClubBrowse}/>
+              <Route path="/books/:bookId" component={BookView}/>
+              <Route path="/clubs/:clubId" component={ClubView}/>
+            </Switch>
         </div>
       </BrowserRouter>
     );

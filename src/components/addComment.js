@@ -3,6 +3,8 @@ import faker from 'faker';
 
 import { getCall, postCall } from '../lib/api';
 
+import '../App.css';
+
 class AddComment extends Component {
     state = {
         currentUser: '',
@@ -58,8 +60,8 @@ class AddComment extends Component {
     render () {
         return (
             <form>
-                <input id="newComment" className="textarea" onChange={this.onTextChange}placeholder="What do you think?" value={this.state.comment}/>  
-                <button type="submit" className="button is-rounded" disabled={!this.state.comment}onClick={this.addComment} >Submit</button>
+                <input id="newComment" className="textarea comment-box" onChange={this.onTextChange}placeholder="What do you think?" value={this.state.comment}/>  
+                <button type="submit"  disabled={!this.state.comment}onClick={this.addComment} >Submit</button>
             </form>
         )
     }
