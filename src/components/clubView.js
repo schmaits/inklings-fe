@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import faker from 'faker';
 
 import { getCall, putCall } from '../lib/api';
@@ -119,7 +120,7 @@ class ClubView extends Component {
                             <p className="heading-3">Currently Reading</p>
                             <br/>
                             <img src={coverImageUrl} alt={title}/>
-                            <p>{title}</p>
+                            <Link to={`/books/${this.state.currentBook._id}`}>{title}</Link>
                             <p>{author}</p>
                             <p>{rating}/5</p>
                         </div>
