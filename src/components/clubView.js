@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import faker from 'faker';
 
-import { getCall } from '../lib/api';
+import { getCall, putCall } from '../lib/api';
 import MemberPreview from './memberPreview';
 import AddComment from './addComment';
 import Comment from './comment';
@@ -73,8 +73,35 @@ class ClubView extends Component {
         })
     }
 
+    addMemberToClub = (event) => {
+        event.preventDefault();
+
+        getCall('/users')
+            .then(allUsers => {
+                return allUsers.allUsers[5]._id
+            })
+            .then(currentUser => {
+                const updatedMembers = this.state.club.members.concat(currentUser)
+                
+                let updatedClub = Object.assign({}, this.state.club)
+                updatedClub.members = updatedMembers;
+
+                this.setState({
+                    club: updatedClub
+                })
+
+                return currentUser;
+            })
+            .then(currentUser => {
+                return putCall(`/clubs/${this.props.match.params.clubId}/users?update=add`, {userId: currentUser})
+            })
+            .catch(err => {
+                throw err;
+            })
+
+    }
+
     render () {
-        console.log(this.state.club)
         const { coverImageUrl, title, author, rating } = this.state.currentBook;
         return (
             <div className="container"> 
@@ -109,7 +136,8 @@ class ClubView extends Component {
                     <div className="tile is-parent is-vertical">
                         <div className="tile is-child box">
                             <p className="heading-3">About club</p>
-                            {this.state.club.summary}
+                            <p>{this.state.club.summary}</p>
+                            <button onClick={this.addMemberToClub}>Join this club</button>
                         </div>
                         <div className="tile is-child has-text-centered box">
                             { this.state.quotes.length === 0 ? 
