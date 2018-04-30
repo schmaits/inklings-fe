@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import faker from 'faker';
 
-import { getCall } from '../lib/api';
+import { getCall, putCall } from '../lib/api';
 import Comment from './comment';
 
 class BookView extends Component {
     state = {
         book: {},
         quotes: [],
-        comments: []
+        comments: [],
+        currentUser: {
+            toRead: []
+        }
     }
 
     componentDidMount () {
@@ -40,9 +43,23 @@ class BookView extends Component {
                     comments: bookComments.bookComments
                 })
             })
+            .then(() => {
+                return getCall('/users')
+            })
+            .then(allUsers => {
+                this.setState({
+                    currentUser: allUsers.allUsers[5]
+                })
+            })
             .catch(err => {
                 this.props.history.push('/404');
             });
+    }
+
+    addToReadingList = (event) => {
+        event.preventDefault();
+
+        putCall(`/users/${this.state.currentUser._id}/toRead`, { bookId: this.state.book._id })
     }
 
     render () {
@@ -52,6 +69,9 @@ class BookView extends Component {
                     <div className="tile is-child box">
                         <img src={this.state.book.coverImageUrl} alt={this.state.book.title}/>
                         <p>{this.state.book.rating}/5</p>
+                        { this.state.currentUser.toRead.includes(this.state.book._id) ? <p>This book is on your reading list</p> :
+                        <button onClick={this.addToReadingList}>I want to read this book</button>
+                        }
                     </div>
                     <div className="tile is-child box">Clubs reading</div>
                 </div>
