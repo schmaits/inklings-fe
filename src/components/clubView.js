@@ -9,7 +9,8 @@ import Comment from './comment';
 class ClubView extends Component {
     state = {
         club: {
-            members: []
+            members: [],
+            admin: ''
         },
         currentBook: {},
         quotes: [],
@@ -60,7 +61,7 @@ class ClubView extends Component {
                 })
             })
             .catch(err => {
-                console.log(err);
+                this.props.history.push('/404')
             })
     }
 

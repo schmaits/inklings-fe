@@ -41,7 +41,7 @@ class BookView extends Component {
                 })
             })
             .catch(err => {
-                if (err) console.log(err);
+                this.props.history.push('/404');
             });
     }
 

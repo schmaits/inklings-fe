@@ -1,10 +1,11 @@
 export function getCall (endpoint) {
     return fetch(`http://localhost:3010/api${endpoint}`)
         .then(res => {
+            if (res.status === 404 || res.status === 400) throw new Error(res) 
             return res.json()
         })
         .catch(err => {
-            throw err;
+            throw new Error(err);
         });
 }
 
@@ -18,7 +19,7 @@ export function putCall (endpoint, newData) {
         body: JSON.stringify(newData)
     })
     .catch(err => {
-        throw err;
+        throw new Error(err);
     })
 }
 
@@ -32,6 +33,6 @@ export function postCall (endpoint, postObj) {
         body: JSON.stringify(postObj)
     })
     .catch(err => {
-        throw err;
+        throw new Error(err);
     })
 }
