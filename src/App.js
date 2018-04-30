@@ -6,23 +6,22 @@ import Homepage from './components/homepage';
 import ClubBrowse from './components/clubBrowse';
 import BookView from './components/bookView';
 import ClubView from './components/clubView';
+import BookBrowse from './components/bookBrowse';
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
-            <div>
-              <Hero/>
-            </div>
-            <div className="section">
-              <Switch>
-                <Route exact path="/" component={Homepage}/>
-                <Route exact path="/clubs" component={ClubBrowse}/>
-                <Route path="/books/:bookId" component={BookView}/>
-                <Route path="/clubs/:clubId" component={ClubView}/>
-              </Switch>
-            </div>
+        <div className="App hero-styling">
+            <Navbar/>
+            <Switch>
+              <Route exact path="/" component={Homepage}/>
+              <Route exact path="/clubs" component={ClubBrowse}/>
+              <Route exact path="/books" component={BookBrowse}/>
+              <Route path="/books/:bookId" component={BookView}/>
+              <Route path="/clubs/:clubId" component={ClubView}/>
+              <Route component={NotFound}/>
+            </Switch>
         </div>
       </BrowserRouter>
     );
