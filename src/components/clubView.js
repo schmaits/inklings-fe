@@ -18,7 +18,8 @@ class ClubView extends Component {
         quotes: [],
         currentBookComments: [],
         currentUser: '',
-        averageRating: null
+        averageRating: null,
+        randomQuote: null
     }
 
     componentDidMount () {
@@ -55,6 +56,11 @@ class ClubView extends Component {
             .then(bookQuotes => {
                 this.setState({
                     quotes: bookQuotes
+                })
+            })
+            .then(() => {
+                this.setState({
+                    randomQuote: faker.random.arrayElement(this.state.quotes).body
                 })
             })
             .then(() => {
@@ -168,7 +174,12 @@ class ClubView extends Component {
                         <div className="tile is-child has-text-centered box">
                             { this.state.quotes.length === 0 ? 
                                 (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 
-                                (<p className="heading-3">"{faker.random.arrayElement(this.state.quotes).body}"</p>) 
+                                (<div> 
+                                    <p className="heading-3">"{faker.random.arrayElement(this.state.quotes).body}"</p>
+                                    <span className="icon is-size-3 is-pulled-right">
+                                        <i onClick={() => {window.open(`https://twitter.com/intent/tweet?hashtags=inklings&text="${this.state.randomQuote}" - ${this.state.currentBook.title}`)}} className="fa fa-twitter-square"/>
+                                    </span>
+                                </div>) 
                             }
                         </div>
                         <div className="tile is-child box">
