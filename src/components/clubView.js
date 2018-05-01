@@ -16,7 +16,8 @@ class ClubView extends Component {
         currentBook: {},
         quotes: [],
         currentBookComments: [],
-        currentUser: ''
+        currentUser: '',
+        averageRating: null
     }
 
     componentDidMount () {
@@ -32,6 +33,13 @@ class ClubView extends Component {
             .then(bookData => {
                 this.setState({
                     currentBook: bookData.book[0]
+                })
+
+                const sum = bookData.book[0].rating.reduce((x, y) => x + y);
+                const ave = Math.round(sum / bookData.book[0].rating.length);
+                
+                this.setState({
+                    averageRating: ave
                 })
             })
             .then(() => {
@@ -111,7 +119,7 @@ class ClubView extends Component {
 
 
     render () {
-        const { coverImageUrl, title, author, rating } = this.state.currentBook;
+        const { coverImageUrl, title, author } = this.state.currentBook;
         return (
             <div className="container"> 
                 <div className="tile is-ancestor">
@@ -122,7 +130,7 @@ class ClubView extends Component {
                             <img src={coverImageUrl} alt={title}/>
                             <Link to={`/books/${this.state.currentBook._id}`}>{title}</Link>
                             <p>{author}</p>
-                            <p>{rating}/5</p>
+                            <p>{this.state.averageRating}/5</p>
                         </div>
                         <div className="tile is-child box">
                             <p className="heading-3">Members</p>
