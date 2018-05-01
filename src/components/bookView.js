@@ -81,8 +81,10 @@ class BookView extends Component {
                 <div className="tile is-parent is-vertical is-3">
                     <div className="tile is-child box">
                         <img src={this.state.book.coverImageUrl} alt={this.state.book.title}/>
-                        <p>{this.state.averageRating}/5</p>
-                        <RatingGraphic aveRating={this.state.averageRating}/>
+                        <RatingGraphic 
+                            aveRating={this.state.averageRating}
+                            bookId={this.props.match.params.bookId}
+                        />
                         { this.state.currentUser.toRead.includes(this.state.book._id) ? <p>This book is on your reading list</p> :
                         <button onClick={this.addToReadingList}>I want to read this book</button>
                         }
