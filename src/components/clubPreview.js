@@ -21,6 +21,7 @@ class ClubPreview extends Component {
     }
 
     render () {
+        console.log(this.props)
         const { name, id } = this.props;
         return (
             <article className="media">

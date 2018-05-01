@@ -54,14 +54,12 @@ class ClubView extends Component {
                 return bookQuotes;
             })
             .then(bookQuotes => {
-                this.setState({
-                    quotes: bookQuotes
-                })
-            })
-            .then(() => {
-                this.setState({
-                    randomQuote: faker.random.arrayElement(this.state.quotes).body
-                })
+                if (bookQuotes.length !== 0) {
+                    this.setState({
+                        quotes: bookQuotes,
+                        randomQuote: faker.random.arrayElement(bookQuotes).body
+                    })
+                }  
             })
             .then(() => {
                 return getCall(`/comments/clubs/${this.state.club._id}`)
