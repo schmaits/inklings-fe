@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { putCall } from '../lib/api';
+
 class RatingGraphic extends Component {
     state = {
         tempRating: this.props.aveRating,
@@ -13,14 +15,14 @@ class RatingGraphic extends Component {
     }
 
     onHover = (event) => {
-        this.state.vote ? null :
+        if(!this.state.vote)
         this.setState({
             tempRating: event.target.id
         })
     }
 
     onMouseOff = (event) => {
-        this.state.vote ? null :
+        if(!this.state.vote)
         this.setState({
             tempRating: this.props.aveRating
         })
@@ -33,13 +35,15 @@ class RatingGraphic extends Component {
             vote: event.target.id,
             tempRating: event.target.id
         })
+
+        return putCall(`/books/${this.props.bookId}`, { addedRating: event.target.id });
     }
     
     render () {
         const yellowStar = "has-text-warning fa fa-star";
         const hollowStar = "fa fa-star"
         return (
-            <div>
+            <div className="has-text-centered">
                 <span className="icon has-size-5">
                     <i id="1" onClick={this.vote} onMouseOut={this.onMouseOff} onMouseOver={this.onHover} className={ this.state.tempRating >= 1 ? yellowStar : hollowStar}/>
                     <i id="2" onClick={this.vote} onMouseOut={this.onMouseOff} onMouseOver={this.onHover} className={ this.state.tempRating >= 2 ? yellowStar : hollowStar}/>
