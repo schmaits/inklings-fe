@@ -118,6 +118,9 @@ class Homepage extends Component {
                             <p className="title has-text-dark">Hello {this.state.user.firstName}!</p>
                             <p className="has-text-dark heading-3">"{this.state.quote.body}"</p>
                             <p className="has-text-right has-text-dark heading-3">- {this.state.quote.bookTitle}</p>
+                            <span className="icon is-size-3 is-pulled-right">
+                                <i onClick={() => {window.open(`https://twitter.com/intent/tweet?hashtags=inklings&text="${this.state.quote.body}" - ${this.state.quote.bookTitle}`)}} className="fa fa-twitter-square"/>
+                            </span>
                         </div>
                     </div>
                 </div>
