@@ -11,7 +11,8 @@ class BookView extends Component {
         comments: [],
         currentUser: {
             toRead: []
-        }
+        },
+        averageRating: null
     }
 
     componentDidMount () {
@@ -19,6 +20,13 @@ class BookView extends Component {
             .then(bookData => {
                 this.setState({
                     book: bookData.book[0]
+                })
+
+                const sum = bookData.book[0].rating.reduce((x, y) => x + y);
+                const ave = Math.round(sum / bookData.book[0].rating.length);
+
+                this.setState({
+                    averageRating: ave
                 })
             })
             .then(() => {
@@ -68,7 +76,7 @@ class BookView extends Component {
                 <div className="tile is-parent is-vertical is-3">
                     <div className="tile is-child box">
                         <img src={this.state.book.coverImageUrl} alt={this.state.book.title}/>
-                        <p>{this.state.book.rating}/5</p>
+                        <p>{this.state.averageRating}/5</p>
                         { this.state.currentUser.toRead.includes(this.state.book._id) ? <p>This book is on your reading list</p> :
                         <button onClick={this.addToReadingList}>I want to read this book</button>
                         }
