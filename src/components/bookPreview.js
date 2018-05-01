@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import RatingGraphic from './ratingGraphic';
+
 import { getCall } from '../lib/api';
 
 class BookPreview extends Component {
@@ -38,7 +40,10 @@ class BookPreview extends Component {
                         <Link to={`/books/${this.state.book._id}`}><strong className="has-text-black">{this.state.book.title}</strong></Link>
                         <br/>
                         {this.state.book.author}
-                        <p>{this.state.averageRating}/5</p>
+                        <RatingGraphic 
+                            aveRating={this.state.averageRating}
+                            bookId={this.props.bookId}
+                        />
                         {this.props.readingList ? <button id={this.state.book._id} onClick={this.props.readingListToCurrentlyReading}>Start reading</button> : null}
                         {this.props.currentlyReading ? <button id={this.state.book._id} onClick={this.props.currentlyReadingToRead}>Finished!</button> : null}
                     </div>

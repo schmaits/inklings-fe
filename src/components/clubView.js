@@ -6,6 +6,7 @@ import { getCall, putCall } from '../lib/api';
 import MemberPreview from './memberPreview';
 import AddComment from './addComment';
 import Comment from './comment';
+import RatingGraphic from './ratingGraphic';
 
 class ClubView extends Component {
     state = {
@@ -130,7 +131,10 @@ class ClubView extends Component {
                             <img src={coverImageUrl} alt={title}/>
                             <Link to={`/books/${this.state.currentBook._id}`}>{title}</Link>
                             <p>{author}</p>
-                            <p>{this.state.averageRating}/5</p>
+                            <RatingGraphic
+                                aveRating={this.state.averageRating}
+                                bookId={this.state.currentBook._id}
+                            />
                         </div>
                         <div className="tile is-child box">
                             <p className="heading-3">Members</p>
@@ -152,12 +156,14 @@ class ClubView extends Component {
                     </div>
                     <div className="tile is-parent is-vertical">
                         <div className="tile is-child box">
-                            <p className="heading-3">About club</p>
+                            <p className="heading-3">{this.state.club.name}</p>
                             <p>{this.state.club.summary}</p>
-                            {this.state.club.members.includes(this.state.currentUser) ?
-                                <button onClick={this.leaveClub}>Leave this club</button> : 
-                                <button onClick={this.joinClub}>Join this club</button>
-                            }
+                            <div className="has-text-right">
+                                {this.state.club.members.includes(this.state.currentUser) ?
+                                    <button onClick={this.leaveClub}>Leave this club</button> : 
+                                    <button onClick={this.joinClub}>Join this club</button>
+                                }
+                            </div>
                         </div>
                         <div className="tile is-child has-text-centered box">
                             { this.state.quotes.length === 0 ? 
