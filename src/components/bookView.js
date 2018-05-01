@@ -3,6 +3,7 @@ import faker from 'faker';
 
 import { getCall, putCall } from '../lib/api';
 import Comment from './comment';
+import RatingGraphic from './ratingGraphic';
 
 class BookView extends Component {
     state = {
@@ -70,6 +71,10 @@ class BookView extends Component {
         putCall(`/users/${this.state.currentUser._id}/toRead?update=add`, { bookId: this.state.book._id })
     }
 
+    updateRating = (addedRating) => {
+
+    }
+
     render () {
         return (
             <div className="tile is-ancestor">
@@ -77,6 +82,7 @@ class BookView extends Component {
                     <div className="tile is-child box">
                         <img src={this.state.book.coverImageUrl} alt={this.state.book.title}/>
                         <p>{this.state.averageRating}/5</p>
+                        <RatingGraphic aveRating={this.state.averageRating}/>
                         { this.state.currentUser.toRead.includes(this.state.book._id) ? <p>This book is on your reading list</p> :
                         <button onClick={this.addToReadingList}>I want to read this book</button>
                         }
