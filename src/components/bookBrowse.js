@@ -26,6 +26,7 @@ class BookBrowse extends Component {
             <div className="container">
                 <div className="columns">
                     <div className="column">
+                        <div className="tile is-ancestor"> 
                         <div className="tile is-parent is-vertical">
                             {firstHalf.map(book => {
                                 return <div key={book._id} className="tile is-child box">
@@ -35,8 +36,10 @@ class BookBrowse extends Component {
                                 </div>
                             })}
                         </div>
+                        </div>
                     </div>
                     <div className="column">
+                    <div className="tile is-ancestor"> 
                         <div className="tile is-parent is-vertical">
                             {secondHalf.map(book => {
                                 return <div key={book._id} className="tile is-child box">
@@ -45,6 +48,7 @@ class BookBrowse extends Component {
                                     />
                                 </div>
                             })}
+                        </div>
                         </div>
                     </div>
                 </div>
