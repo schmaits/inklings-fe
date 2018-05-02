@@ -46,6 +46,9 @@ class BookPreview extends Component {
                         />
                         {this.props.readingList ? <button id={this.state.book._id} onClick={this.props.readingListToCurrentlyReading}>Start reading</button> : null}
                         {this.props.currentlyReading ? <button id={this.state.book._id} onClick={this.props.currentlyReadingToRead}>Finished!</button> : null}
+                        <br/>
+                        <br/>
+                        <br/>
                     </div>
                 </div>
             </article>
