@@ -79,6 +79,13 @@ class BookView extends Component {
 
     addToReadingList = (event) => {
         event.preventDefault();
+
+        let updatedUser = Object.assign({}, this.state.currentUser)
+        updatedUser.toRead.push(this.state.book._id)
+
+        this.setState({
+            currentUser: updatedUser
+        })
         
         putCall(`/users/${this.state.currentUser._id}/toRead?update=add`, { bookId: this.state.book._id })
     }
