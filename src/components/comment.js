@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
-import { getCall } from '../lib/api';
+import { getCall, deleteCall } from '../lib/api';
 
 class Comment extends Component {
     state = {
@@ -42,6 +42,12 @@ class Comment extends Component {
             })
     }
 
+    deleteComment = (event) => {
+        event.preventDefault();
+
+        deleteCall(`/comments/${this.props.id}/users/${this.state.currentUser}`)
+    }
+
     render () {
         const { body, createdAt } = this.props;
         const relativeTime = moment(createdAt).fromNow();
@@ -55,14 +61,14 @@ class Comment extends Component {
                 <div className="media-content">
                     <div className="content">
                     <p>
-                        <strong>{this.state.username}</strong> <small>{this.state.club}</small> <small>{relativeTime}</small>
+                        <strong>{this.state.username}</strong> <small> to {this.state.club}</small> <small>{relativeTime}</small>
                         <br/>
                         {body}
                     </p>
                     </div>
                 </div>
                 <div className="media-right">
-                    { this.state.userId === this.state.currentUser ? <button className="delete"></button> : null }
+                    { this.state.userId === this.state.currentUser ? <button className="delete" onClick={this.deleteComment}></button> : null }
                 </div>
             </article>
         )
