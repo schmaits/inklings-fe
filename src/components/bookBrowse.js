@@ -20,15 +20,34 @@ class BookBrowse extends Component {
     }
 
     render () {
+        const firstHalf = this.state.books.slice(0, Math.floor(this.state.books.length) / 2);
+        const secondHalf = this.state.books.slice(Math.floor(this.state.books.length) / 2);
         return (
-            <div>
-                {this.state.books.map(book => {
-                    return <div key={book._id} className="tile box">
-                        <BookPreview 
-                            bookId={book._id}
-                        />
+            <div className="container">
+                <div className="columns">
+                    <div className="column">
+                        <div className="tile is-parent is-vertical">
+                            {firstHalf.map(book => {
+                                return <div key={book._id} className="tile is-child box">
+                                    <BookPreview 
+                                        bookId={book._id}
+                                    />
+                                </div>
+                            })}
+                        </div>
                     </div>
-                })}
+                    <div className="column">
+                        <div className="tile is-parent is-vertical">
+                            {secondHalf.map(book => {
+                                return <div key={book._id} className="tile is-child box">
+                                    <BookPreview 
+                                        bookId={book._id}
+                                    />
+                                </div>
+                            })}
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
