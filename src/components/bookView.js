@@ -121,6 +121,7 @@ class BookView extends Component {
                             this.state.comments.map(comment => {
                                 return (<Comment 
                                     key={comment._id}
+                                    id={comment._id}
                                     body={comment.body}
                                     createdAt={comment.createdAt}
                                     userId={comment.user}

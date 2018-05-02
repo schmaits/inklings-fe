@@ -199,6 +199,7 @@ class ClubView extends Component {
                             {this.state.currentBookComments.map(comment => {
                                 return <div key={comment._id}>
                                     <Comment
+                                        id={comment._id}
                                         body={comment.body}
                                         createdAt={comment.createdAt}
                                         userId={comment.user}
