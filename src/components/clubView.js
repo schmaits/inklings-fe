@@ -103,6 +103,16 @@ class ClubView extends Component {
         })
     }
 
+    deleteCommentFromState = (comment) => {
+        let updatedComments = this.state.currentBookComments.slice();
+        updatedComments.splice(updatedComments.findIndex(commentObj => {
+            return commentObj._id === comment}), 1);
+
+        this.setState({
+            currentBookComments: updatedComments
+        })
+    }
+
     joinClub = (event) => {
         event.preventDefault();
 
@@ -204,6 +214,7 @@ class ClubView extends Component {
                                         createdAt={comment.createdAt}
                                         userId={comment.user}
                                         clubId={this.state.club._id}
+                                        updateState={this.deleteCommentFromState}
                                     />
                                     <hr/>
                                 </div>
