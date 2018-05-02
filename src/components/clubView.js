@@ -65,14 +65,19 @@ class ClubView extends Component {
                 return getCall(`/comments/clubs/${this.state.club._id}`)
             })
             .then(clubComments => {
-                const currentBookComments = clubComments.clubComments.filter(comment => {
+                return clubComments.clubComments.filter(comment => {
                     return comment.book === this.state.currentBook._id
+                }).sort((a, b) => {
+                    let aDate = new Date(a.createdAt)
+                    let bDate = new Date(b.createdAt)
+                    if (aDate < bDate) return 1;
+                    if (aDate > bDate) return -1;
+                    return 0;
                 })
-                return currentBookComments;
             })
-            .then(currentBookComments => {
+            .then(sortedComments => {
                 this.setState({
-                    currentBookComments
+                    currentBookComments: sortedComments
                 })
             })
             .then(() => {
@@ -89,7 +94,9 @@ class ClubView extends Component {
     }
 
     updateCurrentCommentsState = (newComment) => {
-        const updatedComments = this.state.currentBookComments.concat(newComment);
+        let updatedComments = this.state.currentBookComments.slice();
+
+        updatedComments.unshift(newComment);
 
         this.setState({
             currentBookComments: updatedComments
