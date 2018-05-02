@@ -45,6 +45,8 @@ class Comment extends Component {
     deleteComment = (event) => {
         event.preventDefault();
 
+        this.props.updateState(this.props.id);
+
         deleteCall(`/comments/${this.props.id}/users/${this.state.currentUser}`)
     }
 
