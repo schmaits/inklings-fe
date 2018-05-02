@@ -36,3 +36,9 @@ export function postCall (endpoint, postObj) {
         throw new Error(err);
     })
 }
+
+export function deleteCall (endpoint) {
+    return fetch(`http://localhost:3010/api${endpoint}`, {
+        method: 'DELETE'
+    })
+}
