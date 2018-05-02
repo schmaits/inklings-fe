@@ -83,8 +83,14 @@ class BookView extends Component {
         putCall(`/users/${this.state.currentUser._id}/toRead?update=add`, { bookId: this.state.book._id })
     }
 
-    updateRating = (addedRating) => {
+    deleteCommentFromState = (comment) => {
+        let updatedComments = this.state.comments.slice()
+        updatedComments.splice(updatedComments.findIndex(commentObj => {
+            return commentObj._id === comment}), 1);
 
+        this.setState({
+            comments: updatedComments
+        })
     }
 
     render () {
@@ -126,6 +132,7 @@ class BookView extends Component {
                                     createdAt={comment.createdAt}
                                     userId={comment.user}
                                     clubId={comment.club}
+                                    updateState={this.deleteCommentFromState}
                                 />);
                             })
                         }
