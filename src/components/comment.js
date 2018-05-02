@@ -5,9 +5,11 @@ import { getCall } from '../lib/api';
 
 class Comment extends Component {
     state = {
+        userId: '',
         username: '',
         userPicture: '',
-        club: ''
+        club: '',
+        currentUser: ''
     }
 
     componentDidMount () {
@@ -22,8 +24,17 @@ class Comment extends Component {
             })
             .then(userInfo => {
                 this.setState({
+                    userId: userInfo.user[0]._id,
                     username: userInfo.user[0].username,
                     userPicture: userInfo.user[0].profilePictureUrl
+                })
+            })
+            .then(() => {
+                return getCall('/users')
+            })
+            .then(allUsers => {
+                this.setState({
+                    currentUser: allUsers.allUsers[5]._id
                 })
             })
             .catch(err => {
@@ -51,7 +62,7 @@ class Comment extends Component {
                     </div>
                 </div>
                 <div className="media-right">
-                    <button className="delete"></button>
+                    { this.state.userId === this.state.currentUser ? <button className="delete"></button> : null }
                 </div>
             </article>
         )
