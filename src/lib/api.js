@@ -41,4 +41,7 @@ export function deleteCall (endpoint) {
     return fetch(`http://localhost:3010/api${endpoint}`, {
         method: 'DELETE'
     })
+    .catch(err => {
+        throw new Error(err);
+    })
 }
