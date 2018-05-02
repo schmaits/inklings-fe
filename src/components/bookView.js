@@ -52,8 +52,16 @@ class BookView extends Component {
                 return getCall(`/comments/books/${this.state.book._id}`)
             })
             .then(bookComments => {
+                const sorted = bookComments.bookComments.sort((a, b) => {
+                    let aDate = new Date(a.createdAt)
+                    let bDate = new Date(b.createdAt)
+                    if (aDate < bDate) return 1;
+                    if (aDate > bDate) return -1;
+                    return 0;
+                });
+
                 this.setState({
-                    comments: bookComments.bookComments
+                    comments: sorted
                 })
             })
             .then(() => {
@@ -65,7 +73,8 @@ class BookView extends Component {
                 })
             })
             .catch(err => {
-                this.props.history.push('/404');
+                console.log(err);
+                // this.props.history.push('/404');
             });
     }
 
