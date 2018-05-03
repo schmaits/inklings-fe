@@ -1,5 +1,5 @@
 export function getCall (endpoint) {
-    return fetch(`http://localhost:3010/api${endpoint}`)
+    return fetch(`https://secure-scrubland-24650.herokuapp.com/api${endpoint}`)
         .then(res => {
             if (res.status === 404 || res.status === 400) throw new Error(res) 
             return res.json()
@@ -10,7 +10,7 @@ export function getCall (endpoint) {
 }
 
 export function putCall (endpoint, newData) {
-    return fetch(`http://localhost:3010/api${endpoint}`, {
+    return fetch(`https://secure-scrubland-24650.herokuapp.com/api${endpoint}`, {
         method: 'PUT',
         headers: new Headers({
             'Accept': 'application/json',
@@ -24,7 +24,7 @@ export function putCall (endpoint, newData) {
 }
 
 export function postCall (endpoint, postObj) {
-    return fetch(`http://localhost:3010/api${endpoint}`, {
+    return fetch(`https://secure-scrubland-24650.herokuapp.com/api${endpoint}`, {
         method: 'POST',
         headers: new Headers({
             'Accept': 'application/json',
@@ -38,7 +38,7 @@ export function postCall (endpoint, postObj) {
 }
 
 export function deleteCall (endpoint) {
-    return fetch(`http://localhost:3010/api${endpoint}`, {
+    return fetch(`https://secure-scrubland-24650.herokuapp.com/api${endpoint}`, {
         method: 'DELETE'
     })
     .catch(err => {
