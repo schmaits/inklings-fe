@@ -21,24 +21,22 @@ class ClubsBrowse extends Component {
 
     render () {
         return (
-            <div className="tile is-ancestor">
-                <div className="tile is-parent is-vertical">
-                        {chunk(this.state.clubs, 4).map(chunk => {
-                            return <div key={faker.lorem.words()} className="tile is-child">
-                                <div className="tile is-parent">
-                                    {chunk.map(club => {
-                                        return <div key={club._id} className="tile is-child box">
-                                            <ClubPreview
-                                                id={club._id}
-                                                currentlyReading={club.currentlyReading}
-                                                name={club.name}
-                                            />
-                                        </div>
-                                    })}
+            <div className="columns">
+                {chunk(this.state.clubs, 4).map(chunk => {
+                    return <div key={faker.lorem.words()} >
+                        {chunk.map(club => {
+                            return <div key={club._id} className="column">
+                                <div className="box">
+                                    <ClubPreview
+                                        id={club._id}
+                                        currentlyReading={club.currentlyReading}
+                                        name={club.name}
+                                    />
                                 </div>
                             </div>
                         })}
-                </div>
+                    </div>
+                })}
             </div>
         )
     }

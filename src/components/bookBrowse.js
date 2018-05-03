@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import faker from 'faker';
+import chunk from 'chunk';
 
 import { getCall } from '../lib/api';
 
@@ -12,7 +14,6 @@ class BookBrowse extends Component {
     componentDidMount () {
         getCall('/books')
             .then(bookData => {
-                console.log(bookData.allBooks[0])
                 this.setState({
                     books: bookData.allBooks
                 })
@@ -20,38 +21,21 @@ class BookBrowse extends Component {
     }
 
     render () {
-        const firstHalf = this.state.books.slice(0, Math.floor(this.state.books.length) / 2);
-        const secondHalf = this.state.books.slice(Math.floor(this.state.books.length) / 2);
         return (
-            <div className="container">
-                <div className="columns">
-                    <div className="column">
-                        <div className="tile is-ancestor"> 
-                        <div className="tile is-parent is-vertical">
-                            {firstHalf.map(book => {
-                                return <div key={book._id} className="tile is-child box">
+            <div className="columns">
+                {chunk(this.state.books, 4).map(chunk => {
+                    return <div key={faker.lorem.words()} >
+                        {chunk.map(book => {
+                            return <div key={book._id} className="column">
+                                <div className="box">
                                     <BookPreview 
                                         bookId={book._id}
                                     />
                                 </div>
-                            })}
-                        </div>
-                        </div>
+                            </div>
+                        })}
                     </div>
-                    <div className="column">
-                    <div className="tile is-ancestor"> 
-                        <div className="tile is-parent is-vertical">
-                            {secondHalf.map(book => {
-                                return <div key={book._id} className="tile is-child box">
-                                    <BookPreview 
-                                        bookId={book._id}
-                                    />
-                                </div>
-                            })}
-                        </div>
-                        </div>
-                    </div>
-                </div>
+                })}
             </div>
         )
     }
