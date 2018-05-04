@@ -7,7 +7,9 @@ class GoogleMapsWrapper extends Component {
     render () {
         return (
             <div>
+                <br/>
                 <p>Find a bookshop near you:</p>
+                <br/>
                 <StoreLocator google={this.props.google}/>
             </div>
         )
