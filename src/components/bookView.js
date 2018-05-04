@@ -105,6 +105,7 @@ class BookView extends Component {
             <div className="tile is-ancestor">
                 <div className="tile is-parent is-vertical is-3">
                     <div className="tile is-child box">
+                        <p className="has-text-dark heading-3">{this.state.book.title}</p>
                         <img src={this.state.book.coverImageUrl} alt={this.state.book.title}/>
                         <RatingGraphic 
                             aveRating={this.state.averageRating}
@@ -114,16 +115,24 @@ class BookView extends Component {
                         <button onClick={this.addToReadingList}>I want to read this book</button>
                         }
                     </div>
-                    <div className="tile is-child box">Clubs reading</div>
+                    <div className="tile is-child box">
+                        <p className="has-text-dark heading-3">Get this book</p>
+                        <button onClick={() => {
+                                    const searchQuery = this.state.book.title.split(' ').join('+');
+                                    window.open(`https://www.waterstones.com/books/search/term/${searchQuery}`)
+                                    }}>Buy a copy online</button>
+                    </div>
                 </div>
                 <div className="tile is-parent is-vertical">
                     <div className="tile is-child box">
                         { this.state.quotes.length === 0 ? 
                             (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 
                             (<div>
-                                <p>"{this.state.randomQuote}"</p>
+                                <p className="has-text-dark heading-3 has-text-centered">"{this.state.randomQuote}"</p>
                                 <span className="icon is-size-3 is-pulled-right">
-                                    <i onClick={() => {window.open(`https://twitter.com/intent/tweet?hashtags=inklings&text="${this.state.randomQuote}" - ${this.state.book.title}`)}} className="fa fa-twitter-square"/>
+                                    <i onClick={() => {
+                                    window.open(`https://twitter.com/intent/tweet?hashtags=inklings&text="${this.state.quote.body}" - ${this.state.quote.bookTitle}`, "", "width=600,height=300,top=50,left=500")
+                                    }} className="fa fa-twitter-square"/>   
                                 </span>
                             </div>) 
                         }
