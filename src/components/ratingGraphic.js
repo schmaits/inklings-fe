@@ -44,7 +44,7 @@ class RatingGraphic extends Component {
         const hollowStar = "fa fa-star"
         return (
             <div className="has-text-centered">
-                <span className="icon has-size-5">
+                <span className="icon is-size-5">
                     <i id="1" onClick={this.vote} onMouseOut={this.onMouseOff} onMouseOver={this.onHover} className={ this.state.tempRating >= 1 ? yellowStar : hollowStar}/>
                     <i id="2" onClick={this.vote} onMouseOut={this.onMouseOff} onMouseOver={this.onHover} className={ this.state.tempRating >= 2 ? yellowStar : hollowStar}/>
                     <i id="3" onClick={this.vote} onMouseOut={this.onMouseOff} onMouseOver={this.onHover} className={ this.state.tempRating >= 3 ? yellowStar : hollowStar}/>
