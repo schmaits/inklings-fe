@@ -43,10 +43,10 @@ class StoreLocator extends Component {
         const mapRef = this.refs.map;
         const node = ReactDOM.findDOMNode(mapRef); 
 
-        let {initialCenter, zoom} = this.props;
+        let {zoom} = this.props;
         const {lat, lng} = this.state.currentLocation;
         const mapConfig = Object.assign({}, {
-            center: initialCenter,
+            center: {lat, lng},
             zoom: zoom
         })
         
@@ -84,7 +84,7 @@ class StoreLocator extends Component {
     render() {
         const style = {
         width: '21vw',
-        height: '20vh'
+        height: '30vh'
         }
 
         return (

@@ -50,16 +50,27 @@ const bookshops = [
 ]
 
 class GoogleMapsWrapper extends Component {
+    state = {
+        currentBookshop : {
+            name: '',
+            address: ''
+        }
+    }
+
     render () {
         return (
             <div>
                 <br/>
                 <p>Find a bookshop near you:</p>
                 <br/>
+                {this.state.currentBookshop.name === '' ? <div><br/><br/></div> : <div>
+                        <p>{this.state.currentBookshop.name}</p>
+                        <p>{this.state.currentBookshop.address}</p>
+                    </div>}
                 <StoreLocator google={this.props.google}>
                     <Marker/>
                     {bookshops.map(bookshop => {
-                        return <Marker position={{ lat:bookshop.lat, lng:bookshop.long }}/>
+                        return <Marker key={bookshop.lat + bookshop.long} position={{ lat: bookshop.lat, lng:bookshop.long }}/>
                     })}
                 </StoreLocator>
             </div>
