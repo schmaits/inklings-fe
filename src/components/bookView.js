@@ -4,6 +4,7 @@ import faker from 'faker';
 import { getCall, putCall } from '../lib/api';
 import Comment from './comment';
 import RatingGraphic from './ratingGraphic';
+import GoogleMapsWrapper from './googleMapsWrapper';
 
 class BookView extends Component {
     state = {
@@ -13,7 +14,7 @@ class BookView extends Component {
         currentUser: {
             toRead: []
         },
-        averageRating: null,
+        averageRating: undefined,
         randomQuote: null
     }
 
@@ -118,9 +119,12 @@ class BookView extends Component {
                     <div className="tile is-child box">
                         <p className="has-text-dark heading-3">Get this book</p>
                         <button onClick={() => {
-                                    const searchQuery = this.state.book.title.split(' ').join('+');
-                                    window.open(`https://www.waterstones.com/books/search/term/${searchQuery}`)
-                                    }}>Buy a copy online</button>
+                            const searchQuery = this.state.book.title.split(' ').join('+');
+                            window.open(`https://www.waterstones.com/books/search/term/${searchQuery}`)
+                            }}>
+                            Buy a copy online
+                        </button>
+                        <GoogleMapsWrapper/>
                     </div>
                 </div>
                 <div className="tile is-parent is-vertical">
