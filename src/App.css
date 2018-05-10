@@ -50,4 +50,8 @@
     border-radius: 0%;
     box-shadow: none
 }
-    
+
+.comment {
+    max-width: 40em;
+    text-align: justify
+}

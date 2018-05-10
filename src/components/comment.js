@@ -3,6 +3,8 @@ import moment from 'moment';
 
 import { getCall, deleteCall } from '../lib/api';
 
+import '../App.css';
+
 class Comment extends Component {
     state = {
         userId: '',
@@ -61,7 +63,7 @@ class Comment extends Component {
                     </p>
                 </figure>
                 <div className="media-content">
-                    <div className="content">
+                    <div className="content comment">
                     <p>
                         <strong>{this.state.username}</strong> <small> to {this.state.club}</small> <small>{relativeTime}</small>
                         <br/>
