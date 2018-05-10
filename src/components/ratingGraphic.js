@@ -31,12 +31,15 @@ class RatingGraphic extends Component {
     vote = (event) => {
         event.preventDefault();
 
+        const rating = event.target.id;
+
         this.setState({
-            vote: event.target.id,
-            tempRating: event.target.id
+            vote: rating,
+            tempRating: rating
+        }, () => {
+            return putCall(`/books/${this.props.bookId}`, { addedRating: rating });
         })
 
-        return putCall(`/books/${this.props.bookId}`, { addedRating: event.target.id });
     }
     
     render () {

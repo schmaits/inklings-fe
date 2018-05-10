@@ -94,15 +94,15 @@ class Homepage extends Component {
 
         this.setState({
             user: updatedUser
+        }, () => {
+            return putCall(`/users/${this.state.user._id}/booksRead`, { bookId: bookId})
+                .then(() => {
+                    return putCall(`/users/${this.state.user._id}/currentlyReading?update=remove`, { bookId: bookId })
+                })
+                .catch(err => {
+                    throw err;
+                })
         })
-
-        putCall(`/users/${this.state.user._id}/booksRead`, { bookId: bookId})
-            .then(() => {
-                return putCall(`/users/${this.state.user._id}/currentlyReading?update=remove`, { bookId: bookId })
-            })
-            .catch(err => {
-                throw err;
-            })
     } 
 
     render () {

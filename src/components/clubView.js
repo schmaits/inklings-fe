@@ -121,9 +121,10 @@ class ClubView extends Component {
 
         this.setState({
             club: updatedClub
+        }, () => {
+            return putCall(`/clubs/${this.props.match.params.clubId}/users?update=add`, {userId: this.state.currentUser})
         })
 
-        putCall(`/clubs/${this.props.match.params.clubId}/users?update=add`, {userId: this.state.currentUser})
     }
 
     leaveClub = (event) => {
@@ -134,11 +135,11 @@ class ClubView extends Component {
 
         this.setState({
             club: updatedClub
+        }, () => {
+            return putCall(`/clubs/${this.props.match.params.clubId}/users?update=remove`, {userId: this.state.currentUser});
         })
 
-        putCall(`/clubs/${this.props.match.params.clubId}/users?update=remove`, {userId: this.state.currentUser})
     }
-
 
     render () {
         const { coverImageUrl, title, author } = this.state.currentBook;

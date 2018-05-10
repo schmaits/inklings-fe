@@ -86,9 +86,10 @@ class BookView extends Component {
 
         this.setState({
             currentUser: updatedUser
+        }, () => {
+            return putCall(`/users/${this.state.currentUser._id}/toRead?update=add`, { bookId: this.state.book._id })
         })
         
-        putCall(`/users/${this.state.currentUser._id}/toRead?update=add`, { bookId: this.state.book._id })
     }
 
     deleteCommentFromState = (comment) => {
