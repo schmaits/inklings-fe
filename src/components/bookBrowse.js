@@ -22,20 +22,18 @@ class BookBrowse extends Component {
 
     render () {
         return (
-            <div className="columns">
-                {chunk(this.state.books, 4).map(chunk => {
-                    return <div key={faker.lorem.words()} >
-                        {chunk.map(book => {
-                            return <div key={book._id} className="column">
-                                <div className="box">
-                                    <BookPreview 
-                                        bookId={book._id}
+            <div className="container">
+                <div className="columns is-multiline">
+                    {this.state.books.map(book => {
+                        return <div key={book._id} className="column is-quarter">
+                            <div className="box">
+                                <BookPreview 
+                                    bookId={book._id}
                                     />
-                                </div>
                             </div>
-                        })}
-                    </div>
-                })}
+                        </div>
+                    })}
+                </div>
             </div>
         )
     }
