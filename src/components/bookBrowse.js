@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import faker from 'faker';
-import chunk from 'chunk';
 
 import { getCall } from '../lib/api';
 

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import chunk from 'chunk';
-import faker from 'faker'
 
 import ClubPreview from './clubPreview';
 import { getCall } from '../lib/api';
