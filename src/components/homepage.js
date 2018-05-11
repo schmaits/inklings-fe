@@ -160,8 +160,8 @@ class Homepage extends Component {
                                             return <div key={book} className="tile is-child">
                                                 <BookPreview
                                                     bookId={book}
-                                                    currentlyReading={true}
-                                                    currentlyReadingToRead={this.currentlyReadingToRead}
+                                                    list='currentlyReading'
+                                                    moveList={this.currentlyReadingToRead}
                                                 />
                                             </div>
                                     })}
@@ -176,8 +176,8 @@ class Homepage extends Component {
                                         return <div key={book} className="tile is-child">
                                             <BookPreview
                                                 bookId={book}
-                                                readingList={true}
-                                                readingListToCurrentlyReading={this.readingListToCurrentlyReading}
+                                                list='readingList'
+                                                moveList={this.readingListToCurrentlyReading}
                                             />
                                         </div>
                                     })}  
@@ -190,6 +190,7 @@ class Homepage extends Component {
                                             return <div key={book} className="tile is-child">
                                                 <BookPreview
                                                     bookId={book}
+                                                    list='readList'
                                                 /> 
                                             </div>
                                         })}

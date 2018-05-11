@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import pt from 'prop-types';
 import faker from 'faker';
 
 import { getCall, postCall } from '../lib/api';
@@ -66,5 +67,11 @@ class AddComment extends Component {
         )
     }
 }
+
+AddComment.propTypes = {
+    clubId: pt.string.isRequired,
+    bookId: pt.string.isRequired,
+    updateState: pt.func.isRequired
+};
 
 export default AddComment;

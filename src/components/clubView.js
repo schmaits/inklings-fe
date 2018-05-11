@@ -12,9 +12,12 @@ class ClubView extends Component {
     state = {
         club: {
             members: [],
-            admin: ''
+            admin: '',
+            _id: ''
         },
-        currentBook: {},
+        currentBook: {
+            _id: ''
+        },
         quotes: [],
         currentBookComments: [],
         currentUser: '',

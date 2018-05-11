@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import pt from 'prop-types';
 
 import RatingGraphic from './ratingGraphic';
 
@@ -44,8 +45,11 @@ class BookPreview extends Component {
                             aveRating={this.state.averageRating}
                             bookId={this.props.bookId}
                         />
-                        {this.props.readingList ? <button id={this.state.book._id} onClick={this.props.readingListToCurrentlyReading}>Start reading</button> : null}
-                        {this.props.currentlyReading ? <button id={this.state.book._id} onClick={this.props.currentlyReadingToRead}>Finished!</button> : null}
+                        {this.props.list === 'readingList' ? 
+                            <button id={this.state.book._id} onClick={this.props.moveList}>Start reading</button> :
+                        this.props.list === 'currentlyReading' ? 
+                            <button id={this.state.book._id} onClick={this.props.moveList}>Finished!</button> : 
+                        null}
                         <br/>
                         <br/>
                         <br/>
@@ -54,6 +58,12 @@ class BookPreview extends Component {
             </article>
         )
     }
+}
+
+BookPreview.propTypes = {
+    bookId: pt.string.isRequired,
+    list: pt.string.isRequired,
+    moveList: pt.func,
 }
 
 export default BookPreview;
