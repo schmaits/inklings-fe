@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import pt from 'prop-types';
 import moment from 'moment';
 
 import { getCall, deleteCall } from '../lib/api';
@@ -77,6 +78,15 @@ class Comment extends Component {
             </article>
         )
     }
+}
+
+Comment.propTypes = {
+    id: pt.string.isRequired,
+    body: pt.string.isRequired,
+    createdAt: pt.string.isRequired,
+    userId: pt.string.isRequired,
+    clubId: pt.string.isRequired,
+    updateState: pt.func.isRequired
 }
 
 export default Comment;

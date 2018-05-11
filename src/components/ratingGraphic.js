@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import pt from 'prop-types';
 
 import { putCall } from '../lib/api';
 
@@ -59,5 +60,10 @@ class RatingGraphic extends Component {
     }
 
 }
+
+RatingGraphic.propTypes = {
+    aveRating: pt.number.isRequired,
+    bookId: pt.string.isRequired
+};
 
 export default RatingGraphic;

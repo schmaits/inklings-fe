@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
+import pt from 'prop-types';
 
 import { getCall } from '../lib/api';
 
@@ -38,6 +39,10 @@ class MemberPreview extends Component {
             </article>
         )
     }
+}
+
+MemberPreview.propTypes = {
+    userId: pt.string.isRequired
 }
 
 export default MemberPreview;

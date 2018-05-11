@@ -22,7 +22,7 @@ class ClubPreview extends Component {
     }
 
     render () {
-        const { name, id } = this.props;
+        const { name, clubId } = this.props;
         return (
             <article className="media">
                 <figure className="media-left">
@@ -33,7 +33,7 @@ class ClubPreview extends Component {
                 <div className="media-content">
                     <div className="content">
                     <p>
-                        <Link to={`/clubs/${id}`}><strong className="has-text-black">{name}</strong></Link>
+                        <Link to={`/clubs/${clubId}`}><strong className="has-text-black">{name}</strong></Link>
                         <br/>
                         Currently reading: 
                         <br/>

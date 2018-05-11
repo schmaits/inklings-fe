@@ -15,7 +15,7 @@ class BookView extends Component {
         currentUser: {
             toRead: []
         },
-        averageRating: undefined,
+        averageRating: 0,
         randomQuote: null
     }
 

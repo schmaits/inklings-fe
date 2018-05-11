@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import pt from 'prop-types';
 import faker from 'faker';
 
 import { getCall, putCall } from '../lib/api';
@@ -92,7 +93,8 @@ class ClubView extends Component {
                 }) 
             })
             .catch(err => {
-                this.props.history.push('/404')
+                console.log(err)
+                // this.props.history.push('/404')
             })
     }
 
@@ -230,5 +232,13 @@ class ClubView extends Component {
         )
     }
 }
+
+ClubView.propTypes = {
+    match: pt.shape({
+        params: pt.shape({
+            clubId: pt.string.isRequired
+        }).isRequired
+    }).isRequired
+};
 
 export default ClubView;

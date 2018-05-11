@@ -15,7 +15,7 @@ class Homepage extends Component {
             booksRead: []
         },
         quote: {},
-        clubs: [{_id: ''}]
+        clubs: [{_id: '', currentlyReading: '', name: ''}]
     }
 
     componentDidMount () {

@@ -9,7 +9,7 @@ import { getCall } from '../lib/api';
 class BookPreview extends Component {
     state = {
         book: {},
-        averageRating: null
+        averageRating: 0
     }
 
     componentDidMount () {
