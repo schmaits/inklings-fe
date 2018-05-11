@@ -27,6 +27,7 @@ class BookBrowse extends Component {
                             <div className="box">
                                 <BookPreview 
                                     bookId={book._id}
+                                    list='books'
                                     />
                             </div>
                         </div>
