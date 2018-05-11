@@ -107,87 +107,88 @@ class Homepage extends Component {
 
     render () {
         return (
-            <div className="container">
-                <div className="tile is-ancestor">
-                    <div className="tile is-parent">
-                        <div className="tile is-child is-2 box">
-                            <figure className="image is-clearfix is-128x128">
+            <div className="columns">
+                <div className="column">
+                    <div className="columns box">           
+                        <div className="column is-one-fifth">
+                            <figure className="image is-128x128">
                                 <img className="profile-picture" src={this.state.user.profilePictureUrl} alt={`${this.state.user.firstName} ${this.state.user.secondName}`}/>
                             </figure>              
                         </div>
-                        <div className="tile is-child box">
+                        <div className="column">
                             <p className="title has-text-dark">Hello {this.state.user.firstName}!</p>
                             <p className="has-text-dark heading-3">"{this.state.quote.body}"</p>
                             <p className="has-text-right has-text-dark heading-3">- {this.state.quote.bookTitle}</p>
-                            <span className="icon is-size-3 is-pulled-right">
+                            <span className="icon is-size-3">
                                 <i onClick={() => {
                                     window.open(`https://twitter.com/intent/tweet?hashtags=inklings&text="${this.state.quote.body}" - ${this.state.quote.bookTitle}`, "", "width=600,height=300,top=50,left=500")
                                     }} className="fa fa-twitter-square"/>
                             </span>
                         </div>
                     </div>
-                </div>
 
-                <br/>
+                    <br/>
 
-                <div className="tile is-ancestor is-vertical">
-                    <div className="tile is-parent">
-                        <div className="tile is-child box">
-                            <p className="heading-3">Clubs</p>
-                            <div className="tile is-parent">
+                    <div className="columns box">
+                        <div className="column">
+                            <h2 className="heading-3">Clubs</h2>
+                            <br/>
+                            <div className="columns">
                                 {this.state.clubs.map(club => {
-                                    return <div key={club._id} className="tile is-child">
+                                    return <div key={club._id} className="column">
                                         <ClubPreview
                                             clubId={club._id}
                                             currentlyReading={club.currentlyReading}
                                             name={club.name}
-                                        />
+                                            />
                                     </div>                    
                                 })}
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <br/>
-                <div>
-                    <div className="tile is-ancestor">
-                        <div className="tile is-parent is-3">
-                            <div className="tile is-child box">
-                                <p className="heading-3">Currently reading</p>
-                                <div className="tile is-parent is-vertical">
-                                    {this.state.user.currentlyReading.map(book => {
-                                            return <div key={book} className="tile is-child">
+                    <br/>
+                    <div className="columns">
+                        <div className="column box is-one-fifth currentlyReadingColumn">
+                            <p className="heading-3">Currently reading</p>
+                            <br/>
+                            {this.state.user.currentlyReading.map(book => {
+                                return <BookPreview
+                                        key={book}
+                                        bookId={book}
+                                        list='currentlyReading'
+                                        moveList={this.currentlyReadingToRead}
+                                    /> 
+                            })}
+                        </div>
+                        <div className="column">
+                            <div className="columns box is-paddingless">
+                                <div className="column">
+                                    <p className="heading-3">To Read</p>
+                                    <br/>
+                                    <div className="columns">
+                                        {this.state.user.toRead.slice(0, 3).map(book => {
+                                            return <div key={book} className="column">
                                                 <BookPreview
                                                     bookId={book}
-                                                    list='currentlyReading'
-                                                    moveList={this.currentlyReadingToRead}
+                                                    list='readingList'
+                                                    moveList={this.readingListToCurrentlyReading}
                                                 />
                                             </div>
-                                    })}
+                                        })}  
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="tile is-parent is-vertical">
-                            <div className="tile is-child box">
-                                <p className="heading-3">To Read</p>
-                                <div className="tile is-parent">
-                                    {this.state.user.toRead.map(book => {
-                                        return <div key={book} className="tile is-child">
-                                            <BookPreview
-                                                bookId={book}
-                                                list='readingList'
-                                                moveList={this.readingListToCurrentlyReading}
-                                            />
-                                        </div>
-                                    })}  
-                                </div>
-                            </div>
-                            <div className="tile is-child box">
+
+                            <br/>
+
+                            <div className="columns box is-paddingless">
+                                <div className="column">
                                     <p className="heading-3">Read</p>
-                                    <div className="tile is-parent">
-                                        {this.state.user.booksRead.map(book => {
-                                            return <div key={book} className="tile is-child">
+                                    <br/>
+                                    <div className="columns">
+                                        {this.state.user.booksRead.slice(0, 3).map(book => {
+                                            return <div key={book} className="column">
                                                 <BookPreview
                                                     bookId={book}
                                                     list='readList'
@@ -195,8 +196,9 @@ class Homepage extends Component {
                                             </div>
                                         })}
                                     </div>
+                                </div>
                             </div> 
-                        </div>
+                        </div>  
                     </div>
                 </div>
             </div>

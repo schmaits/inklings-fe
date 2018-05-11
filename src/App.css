@@ -4,6 +4,7 @@
     background-size: cover;
     position: relative;
     background-attachment: fixed;
+    padding: 0% 5% 5% 5%;
 }
 
 .heading {
@@ -33,8 +34,8 @@
 }
 
 .profile-picture {
-    border-radius: 50%;
     border-color: darkgrey;
+    align-self: center;
 }
 
 .box {
@@ -54,4 +55,8 @@
 .comment {
     max-width: 40em;
     text-align: justify
+}
+
+.currentlyReadingColumn {
+    margin-right: 2em
 }
