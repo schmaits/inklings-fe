@@ -50,7 +50,9 @@ class ClubPreview extends Component {
 }
 
 ClubPreview.propTypes = {
-    clubId: pt.string.isRequired
+    clubId: pt.string.isRequired,
+    currentlyReading: pt.string.isRequired,
+    name: pt.string.isRequired
 };
 
 export default ClubPreview;

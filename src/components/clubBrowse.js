@@ -5,7 +5,11 @@ import { getCall } from '../lib/api';
 
 class ClubsBrowse extends Component {
     state = {
-        clubs: []
+        clubs: [{
+            _id: '',
+            name: '',
+            currentlyReading: ''
+        }]
     }
 
     componentDidMount () {
@@ -25,7 +29,7 @@ class ClubsBrowse extends Component {
                         return <div key={club._id} className="column is-quarter">
                             <div className="box">
                                 <ClubPreview
-                                    id={club._id}
+                                    clubId={club._id}
                                     currentlyReading={club.currentlyReading}
                                     name={club.name}
                                 />
