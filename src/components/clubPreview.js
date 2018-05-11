@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import pt from 'prop-types';
 
 import { getCall } from '../lib/api';
 
@@ -47,5 +48,9 @@ class ClubPreview extends Component {
         )
     }
 }
+
+ClubPreview.propTypes = {
+    clubId: pt.string.isRequired
+};
 
 export default ClubPreview;

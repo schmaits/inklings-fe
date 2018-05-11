@@ -15,7 +15,7 @@ class Homepage extends Component {
             booksRead: []
         },
         quote: {},
-        clubs: []
+        clubs: [{_id: ''}]
     }
 
     componentDidMount () {
@@ -138,7 +138,7 @@ class Homepage extends Component {
                                 {this.state.clubs.map(club => {
                                     return <div key={club._id} className="tile is-child">
                                         <ClubPreview
-                                            id={club._id}
+                                            clubId={club._id}
                                             currentlyReading={club.currentlyReading}
                                             name={club.name}
                                         />
