@@ -22,7 +22,7 @@ class ClubView extends Component {
         quotes: [],
         currentBookComments: [],
         currentUser: '',
-        averageRating: null,
+        averageRating: 0,
         randomQuote: null
     }
 
