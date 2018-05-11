@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import pt from 'prop-types';
 import faker from 'faker';
 
 import { getCall, putCall } from '../lib/api';
@@ -165,5 +166,13 @@ class BookView extends Component {
         )
     }
 }
+
+BookView.propTypes = {
+    match: pt.shape({
+        params: pt.shape({
+            bookId: pt.string.isRequired
+        }).isRequired
+    }).isRequired
+};
 
 export default BookView;
