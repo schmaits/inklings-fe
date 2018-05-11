@@ -15,7 +15,9 @@ class Homepage extends Component {
             booksRead: []
         },
         quote: {},
-        clubs: [{_id: '', currentlyReading: '', name: ''}]
+        clubs: [{_id: '', currentlyReading: '', name: ''}],
+        toReadDisplay: [0, 3],
+        readDisplay: [0,3]
     }
 
     componentDidMount () {
@@ -167,7 +169,7 @@ class Homepage extends Component {
                                     <p className="heading-3">To Read</p>
                                     <br/>
                                     <div className="columns">
-                                        {this.state.user.toRead.slice(0, 3).map(book => {
+                                            {this.state.user.toRead.slice(this.state.toReadDisplay[0], this.state.toReadDisplay[1]).map(book => {
                                             return <div key={book} className="column">
                                                 <BookPreview
                                                     bookId={book}
@@ -177,6 +179,26 @@ class Homepage extends Component {
                                             </div>
                                         })}  
                                     </div>
+                                    <span className="icon is-pulled-right">
+                                        <i className="fa fa-arrow-right" onClick={(event) => {
+                                            event.preventDefault();
+
+                                            let newState = this.state.toReadDisplay.slice();
+                                            newState = newState.map(number => {
+                                                return number + 3;
+                                            });
+                                        
+                                            if (newState[1] > this.state.user.toRead.length) newState[1] = undefined;
+                                            if (newState[0] >= this.state.user.toRead.length) {
+                                                newState[0] = 0;
+                                                newState[1] = 3
+                                            }
+
+                                            this.setState({
+                                                toReadDisplay: newState
+                                            });
+                                        }}></i>
+                                    </span>
                                 </div>
                             </div>
 
@@ -187,7 +209,7 @@ class Homepage extends Component {
                                     <p className="heading-3">Read</p>
                                     <br/>
                                     <div className="columns">
-                                        {this.state.user.booksRead.slice(0, 3).map(book => {
+                                        {this.state.user.booksRead.slice(this.state.readDisplay[0], this.state.readDisplay[1]).map(book => {
                                             return <div key={book} className="column">
                                                 <BookPreview
                                                     bookId={book}
@@ -196,6 +218,26 @@ class Homepage extends Component {
                                             </div>
                                         })}
                                     </div>
+                                    <span className="icon is-pulled-right">
+                                        <i className="fa fa-arrow-right" onClick={(event) => {
+                                            event.preventDefault();
+
+                                            let newState = this.state.readDisplay.slice();
+                                            newState = newState.map(number => {
+                                                return number + 3;
+                                            });
+                                        
+                                            if (newState[1] > this.state.user.booksRead.length) newState[1] = undefined;
+                                            if (newState[0] >= this.state.user.booksRead.length) {
+                                                newState[0] = 0;
+                                                newState[1] = 3
+                                            }
+
+                                            this.setState({
+                                                readDisplay: newState
+                                            });
+                                        }}></i>
+                                    </span>
                                 </div>
                             </div> 
                         </div>  
