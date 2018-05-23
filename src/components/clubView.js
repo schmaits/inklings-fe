@@ -148,83 +148,81 @@ class ClubView extends Component {
     render () {
         const { coverImageUrl, title, author } = this.state.currentBook;
         return (
-            <div className="container"> 
-                <div className="tile is-ancestor">
-                    <div className="tile is-parent is-vertical is-3">
-                        <div className="tile is-child box">
-                            <p className="heading-3">Currently Reading</p>
-                            <br/>
-                            <img src={coverImageUrl} alt={title}/>
-                            <Link to={`/books/${this.state.currentBook._id}`}>{title}</Link>
-                            <p>{author}</p>
-                            <RatingGraphic
-                                aveRating={this.state.averageRating}
-                                bookId={this.state.currentBook._id}
+            <div className="columns">
+                <div className="column is-one-quarter">
+                    <div className="box">
+                        <p className="heading-3">Currently Reading</p>
+                        <br/>
+                        <img src={coverImageUrl} alt={title}/>
+                        <Link to={`/books/${this.state.currentBook._id}`}>{title}</Link>
+                        <p>{author}</p>
+                        <RatingGraphic
+                            aveRating={this.state.averageRating}
+                            bookId={this.state.currentBook._id}
+                        />
+                    </div>
+                    <div className="box">
+                        <p className="heading-3">Members</p>
+                        <br/>
+                        {this.state.club.admin ? 
+                            (<MemberPreview 
+                                userId={this.state.club.admin}
+                                admin={true}
+                            />) : (<p>There are no members</p>)
+                        }
+                        {this.state.club.members.map(member => {
+                            return <MemberPreview
+                                key={member}
+                                userId={member}
+                                admin={false}
                             />
-                        </div>
-                        <div className="tile is-child box">
-                            <p className="heading-3">Members</p>
-                            <br/>
-                            {this.state.club.admin ? 
-                                (<MemberPreview 
-                                    userId={this.state.club.admin}
-                                    admin={true}
-                                />) : (<p>There are no members</p>)
+                        })}
+                    </div>
+                </div>
+                <div className="column">
+                    <div className="box">
+                        <p className="heading-3">{this.state.club.name}</p>
+                        <p>{this.state.club.summary}</p>
+                        <div className="has-text-right">
+                            {this.state.club.members.includes(this.state.currentUser) ?
+                                <button onClick={this.leaveClub}>Leave this club</button> : 
+                                <button onClick={this.joinClub}>Join this club</button>
                             }
-                            {this.state.club.members.map(member => {
-                                return <MemberPreview
-                                    key={member}
-                                    userId={member}
-                                    admin={false}
-                                />
-                            })}
                         </div>
                     </div>
-                    <div className="tile is-parent is-vertical">
-                        <div className="tile is-child box">
-                            <p className="heading-3">{this.state.club.name}</p>
-                            <p>{this.state.club.summary}</p>
-                            <div className="has-text-right">
-                                {this.state.club.members.includes(this.state.currentUser) ?
-                                    <button onClick={this.leaveClub}>Leave this club</button> : 
-                                    <button onClick={this.joinClub}>Join this club</button>
-                                }
+                    <div className="has-text-centered box">
+                        { this.state.quotes.length === 0 ? 
+                            (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 
+                            (<div> 
+                                <p className="heading-3">"{faker.random.arrayElement(this.state.quotes).body}"</p>
+                                <span className="icon is-size-3 is-pulled-right">
+                                    <i onClick={() => {window.open(`https://twitter.com/intent/tweet?hashtags=inklings&text="${this.state.randomQuote}" - ${this.state.currentBook.title}`)}} className="fa fa-twitter-square"/>
+                                </span>
+                            </div>) 
+                        }
+                    </div>
+                    <div className="box">
+                        <AddComment
+                            clubId={this.state.club._id}
+                            bookId={this.state.currentBook._id}
+                            updateState={this.updateCurrentCommentsState}
+                        />
+                    </div>
+                    <div className="box">
+                        <p className="heading-3">Discussion board</p>
+                        {this.state.currentBookComments.map(comment => {
+                            return <div key={comment._id}>
+                                <Comment
+                                    id={comment._id}
+                                    body={comment.body}
+                                    createdAt={comment.createdAt}
+                                    userId={comment.user}
+                                    clubId={this.state.club._id}
+                                    updateState={this.deleteCommentFromState}
+                                />
+                                <hr/>
                             </div>
-                        </div>
-                        <div className="tile is-child has-text-centered box">
-                            { this.state.quotes.length === 0 ? 
-                                (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 
-                                (<div> 
-                                    <p className="heading-3">"{faker.random.arrayElement(this.state.quotes).body}"</p>
-                                    <span className="icon is-size-3 is-pulled-right">
-                                        <i onClick={() => {window.open(`https://twitter.com/intent/tweet?hashtags=inklings&text="${this.state.randomQuote}" - ${this.state.currentBook.title}`)}} className="fa fa-twitter-square"/>
-                                    </span>
-                                </div>) 
-                            }
-                        </div>
-                        <div className="tile is-child box">
-                            <AddComment
-                                clubId={this.state.club._id}
-                                bookId={this.state.currentBook._id}
-                                updateState={this.updateCurrentCommentsState}
-                            />
-                        </div>
-                        <div className="tile is-child box">
-                            <p className="heading-3">Discussion board</p>
-                            {this.state.currentBookComments.map(comment => {
-                                return <div key={comment._id}>
-                                    <Comment
-                                        id={comment._id}
-                                        body={comment.body}
-                                        createdAt={comment.createdAt}
-                                        userId={comment.user}
-                                        clubId={this.state.club._id}
-                                        updateState={this.deleteCommentFromState}
-                                    />
-                                    <hr/>
-                                </div>
-                            })}
-                        </div>
+                        })}
                     </div>
                 </div>
             </div>
