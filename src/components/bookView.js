@@ -105,61 +105,59 @@ class BookView extends Component {
 
     render () {
         return (
-            <div className="container">
-                <div className="tile is-ancestor">
-                    <div className="tile is-parent is-vertical is-3">
-                        <div className="tile is-child box">
-                            <p className="has-text-dark heading-3">{this.state.book.title}</p>
-                            <img src={this.state.book.coverImageUrl} alt={this.state.book.title}/>
-                            <RatingGraphic 
-                                aveRating={this.state.averageRating}
-                                bookId={this.props.match.params.bookId}
-                            />
-                            { this.state.currentUser.toRead.includes(this.state.book._id) ? <p>This book is on your reading list</p> :
-                            <button onClick={this.addToReadingList}>I want to read this book</button>
-                            }
-                        </div>
-                        <div className="tile is-child box">
-                            <p className="has-text-dark heading-3">Get this book</p>
-                            <button onClick={() => {
-                                const searchQuery = this.state.book.title.split(' ').join('+');
-                                window.open(`https://www.waterstones.com/books/search/term/${searchQuery}`)
-                                }}>
-                                Buy a copy online
-                            </button>
-                            <GoogleMapsWrapper/>
-                        </div>
+            <div className="columns">
+                <div className="column is-one-quarter">
+                    <div className="box">
+                        <p className="has-text-dark heading-3">{this.state.book.title}</p>
+                        <img src={this.state.book.coverImageUrl} alt={this.state.book.title}/>
+                        <RatingGraphic 
+                            aveRating={this.state.averageRating}
+                            bookId={this.props.match.params.bookId}
+                        />
+                        { this.state.currentUser.toRead.includes(this.state.book._id) ? <p>This book is on your reading list</p> :
+                        <button onClick={this.addToReadingList}>I want to read this book</button>
+                        }
                     </div>
-                    <div className="tile is-parent is-vertical">
-                        <div className="tile is-child box">
-                            { this.state.quotes.length === 0 ? 
-                                (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 
-                                (<div>
-                                    <p className="has-text-dark heading-3 has-text-centered">"{this.state.randomQuote}"</p>
-                                    <span className="icon is-size-3 is-pulled-right">
-                                        <i onClick={() => {
-                                        window.open(`https://twitter.com/intent/tweet?hashtags=inklings&text="${this.state.quote.body}" - ${this.state.quote.bookTitle}`, "", "width=600,height=300,top=50,left=500")
-                                        }} className="fa fa-twitter-square"/>   
-                                    </span>
-                                </div>) 
-                            }
-                        </div>
-                        <div className="tile is-child box">
-                            { this.state.comments.length === 0 ?
-                                (<p className="has-text-centered">There are no comments for this book yet!</p>) : 
-                                this.state.comments.map(comment => {
-                                    return (<Comment 
-                                        key={comment._id}
-                                        id={comment._id}
-                                        body={comment.body}
-                                        createdAt={comment.createdAt}
-                                        userId={comment.user}
-                                        clubId={comment.club}
-                                        updateState={this.deleteCommentFromState}
-                                    />);
-                                })
-                            }
-                        </div>
+                    <div className="box">
+                        <p className="has-text-dark heading-3">Get this book</p>
+                        <button onClick={() => {
+                            const searchQuery = this.state.book.title.split(' ').join('+');
+                            window.open(`https://www.waterstones.com/books/search/term/${searchQuery}`)
+                            }}>
+                            Buy a copy online
+                        </button>
+                        <GoogleMapsWrapper/>
+                    </div>
+                </div>
+                <div className="column">
+                    <div className="box">
+                        { this.state.quotes.length === 0 ? 
+                            (<p className="has-text-centered">There are no quotes for this book yet!</p>) : 
+                            (<div>
+                                <p className="has-text-dark heading-3 has-text-centered">"{this.state.randomQuote}"</p>
+                                <span className="icon is-size-3 is-pulled-right">
+                                    <i onClick={() => {
+                                    window.open(`https://twitter.com/intent/tweet?hashtags=inklings&text="${this.state.quote.body}" - ${this.state.quote.bookTitle}`, "", "width=600,height=300,top=50,left=500")
+                                    }} className="fa fa-twitter-square"/>   
+                                </span>
+                            </div>) 
+                        }
+                    </div>
+                    <div className="box">
+                        { this.state.comments.length === 0 ?
+                            (<p className="has-text-centered">There are no comments for this book yet!</p>) : 
+                            this.state.comments.map(comment => {
+                                return (<Comment 
+                                    key={comment._id}
+                                    id={comment._id}
+                                    body={comment.body}
+                                    createdAt={comment.createdAt}
+                                    userId={comment.user}
+                                    clubId={comment.club}
+                                    updateState={this.deleteCommentFromState}
+                                />);
+                            })
+                        }
                     </div>
                 </div>
             </div>
