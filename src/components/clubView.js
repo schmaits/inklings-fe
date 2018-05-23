@@ -93,8 +93,7 @@ class ClubView extends Component {
                 }) 
             })
             .catch(err => {
-                console.log(err)
-                // this.props.history.push('/404')
+                this.props.history.push('/404')
             })
     }
 
